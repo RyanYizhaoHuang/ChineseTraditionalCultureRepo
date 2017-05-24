@@ -1,0 +1,26 @@
+<!--contact.ejs-->
+<% include partials/header.ejs %>
+<% include partials/navigationBar.ejs %> 
+
+<!-- Body Container -->
+<div class="container">
+    <h2><%= title %></h2>
+    <div class="row"><br></div>
+    <div class="row">
+
+        
+        <div class="col-md-7">
+            <ul class="list-group">
+                <li class="list-group-item">Email: ryan.yizhao@gmail.com</li>
+                <li class="list-group-item">Github: RyanYizhaoHuang</li>                     
+            </ul>
+        </div>
+        <!-- contact Form -->
+        <div class="col-md-4  col-md-offset-1">
+            <!--Contact Form-->
+            <% include partials/contactForm.ejs%>
+            <!-- Contact Form End-->
+        </div><!--End contact Form -->
+    </div>
+</div>
+<% include partials/footer.ejs %>
