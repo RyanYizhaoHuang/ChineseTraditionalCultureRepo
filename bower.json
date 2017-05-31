@@ -12,7 +12,7 @@
     "中华传统文化",
     "中華傳統文化"
   ],
-  "homepage": "https://github.com/RyanYizhaoHuang/Ryan-Huang-NodeJs-Express-PortfolioV2",
+  "homepage": "https://chinese-traditional-culture-rp.herokuapp.com/",
   "ignore": [
     "**/.*",
     "node_modules",

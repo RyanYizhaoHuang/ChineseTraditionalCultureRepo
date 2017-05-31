@@ -14,7 +14,7 @@ module.exports.DisplayHome = (req,res) =>
 {
     res.render('index', { 
     displayName: req.user ? req.user.displayName : '',
-    title: 'Yizhao(Ryan) Huang',
+    title: 'Chinese Traditional Culture Repository',
     contacts :''
   });
 }
@@ -23,7 +23,7 @@ module.exports.DisplayHome = (req,res) =>
 module.exports.DisplayContact = (req,res) =>
 {
     res.render('contact', { 
-    title: 'Contact Ryan',
+    title: 'Contact Us',
     displayName: req.user ? req.user.displayName : '',
     contacts :''
   });
@@ -33,7 +33,7 @@ module.exports.DisplayContact = (req,res) =>
 module.exports.DisplayAbout = (req,res) => 
 {
     res.render('about', { 
-    title: 'About Ryan',
+    title: 'About Us',
     displayName: req.user ? req.user.displayName : '',
     contacts :''
   });
@@ -67,6 +67,15 @@ module.exports.DisplayProjectDetail = (req,res) =>
 {
   res.render('projects/detail',{
     title: "Ryan's Project",
+    displayName: req.user ? req.user.displayName : ''
+  });
+}
+
+//Display items list page
+module.exports.DisplayItemList = (req,res) =>
+{
+  res.render('itemlist',{
+    title: "List",
     displayName: req.user ? req.user.displayName : ''
   });
 }

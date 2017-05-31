@@ -2,22 +2,28 @@
 
 body {
   padding: 0px;
-  font-family: 'Open Sans',BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-  font-size: 14px;
+  font-family: 微软雅黑,'Open Sans',BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-size: 16px;
+  font-weight: bold;
   line-height: 1.42857143;
-  color: #fff;
-  background-color: #060606;
+}
+
+.navText{
+  font-family: Helvetica, 微软雅黑;
 }
 
 a {
   color: #00B7FF;
+  font-size:16px;
+  font-weight: bold;  
+  font-family: Helvetica, 微软雅黑;
 }
 
 
 /* footer style */
 .footer
 {
-  font-family: 'Roboto', sans-serif;
+  font-family: Helvetica, 微软雅黑,'Roboto', sans-serif;
   margin-top: 36px;
   font-size: 14px;
   font-style: italic;
@@ -57,7 +63,6 @@ a {
 
 .font-Droid
 {
-  font-family: 'Droid Sans', sans-serif;
   font-size: 16px;
 }
 
@@ -92,4 +97,25 @@ a {
     border: 1px solid #282828;
     font-size: 18px;
 
+}
+
+.listImageLink {
+    float: left;
+    width: 300px;
+    height: auto;
+}
+
+.listPanelPadding
+{
+  padding:20px;
+}
+
+.boxshadow {
+    border-radius: 5px;
+    position: relative;
+    -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    padding: 10px;
+    background: white;
 }

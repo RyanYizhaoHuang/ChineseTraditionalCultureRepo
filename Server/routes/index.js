@@ -53,6 +53,11 @@ router.get('/services', (req, res, next) => {
   indexController.DisplayServices(req,res);
 });
 
+//Get itemlist page
+router.get('/itemlist', (req, res, next) => {
+  indexController.DisplayItemList(req,res);
+});
+
 
 
 module.exports = router;

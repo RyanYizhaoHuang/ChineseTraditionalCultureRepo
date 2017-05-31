@@ -1,5 +1,5 @@
 <!-- navigation bar container -->
-<nav class="navbar navbar-default navbar-inverse">
+<nav class="navbar navbar-default">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -13,13 +13,18 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse navText" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      <li><a class="font_pacifico" style="color:#FFF" href="/">Ryan's Showcase</a></li>
+      <li><a href="/">中华传统文化资料库</a></li>
       <% if (title == "Ryan's Project") { %>
         <li class="active"><a class="font-Droid" href="/projects"><i class="fa fa-cubes" aria-hidden="true"></i> Projects <span class="sr-only">(current)</span></a></li>
       <% } else { %>
         <li><a class="font-Droid" href="/projects"><i class="fa fa-cubes" aria-hidden="true"></i> Projects <span class="sr-only">(current)</span></a></li>
+      <% } %>
+      <% if (title == "List") { %>
+        <li class="active"><a href="/itemlist"> 儒 <span class="sr-only">(current)</span></a></li>
+      <% } else { %>
+        <li><a  href="/itemlist"> 儒 <span class="sr-only">(current)</span></a></li>
       <% } %>
       <% if(title == "Ryan's Services") { %>
         <li class="active"><a class="font-Droid" href="/services"><i class="fa fa-handshake-o" aria-hidden="true"></i> Services</a></li>
