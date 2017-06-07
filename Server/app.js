@@ -40,6 +40,8 @@ db.once('open',()=>{
 
 let index = require('./routes/index');  //wildcard route
 let bussinesscontact = require('./routes/contact.js'); //busniess contact route
+let resources = require('./routes/resources.js'); //resources route
+let dashboard = require('./routes/dashboard.js'); //dashboard route
 let users = require('./routes/users'); //routes for users and auth
 
 var app = express();
@@ -70,7 +72,7 @@ app.use(passport.session());
 
 //route redirects
 app.use('/', index); //top level links
-app.use('/businesscontact',bussinesscontact); //businesscontact links - start with /businesscontact
+app.use('/dashboard',dashboard); //dashboard links - start with /dashboard
 app.use('/users', users); // users link - start with /users
 
 // User Configuration

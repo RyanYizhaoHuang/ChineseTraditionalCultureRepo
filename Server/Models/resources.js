@@ -12,14 +12,15 @@ let treasure = mongoose.Schema(
         chinaUrl: String,
         optionalUrl: String,
         optionalNote: String,
-        promo: Boolean
+        promo: Boolean,
+        click: Number
     }
 );
 
 // create resources module class
 let resourcesSchema = mongoose.Schema(
     {
-        topic: String, // 了凡四训
+        topic: String, //了凡四训
         publisher: String, // 华藏净宗学会
         publishDate: Date, 
         introduction: String,
@@ -36,6 +37,6 @@ let resourcesSchema = mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model.apply('resources', resourcesSchema);
+module.exports = mongoose.model('resources', resourcesSchema);
 
 
