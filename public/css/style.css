@@ -128,3 +128,7 @@ a {
   margin-bottom: 48px;
   clear: both;
 }
+
+.topGap {
+  margin-top: 16px;
+}

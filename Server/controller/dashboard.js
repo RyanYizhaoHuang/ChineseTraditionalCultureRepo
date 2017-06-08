@@ -1,37 +1,44 @@
 //create the bussinessContent object - represents a document in the bussinessContact collection
-let contacts = require('../Models/businessContact');
+let resource = require('../Models/resources');
 //import mongoose
 let mongoose = require('mongoose');
 
 //Display businessContact list
 module.exports.DisplayDashboard = (req,res) => 
 {
-  res.render('dashboard',{
-    title:'Dashboard',
-    contacts:'',
-    displayName: req.user ? req.user.displayName : ''
-  });
+    resource.find((err,resource)=>{
+      if(err)
+      {
+        return console.error(err);
+      }
+      else
+      {
+        console.log("Here is the resources: %j", resource );
+        res.render('dashboard/index',{
+        title:'Add a new resource',
+        resources: resource,
+        displayName: req.user ? req.user.displayName : ''
+         });
+      }
+    });
 }
 
-//Display BusinessContact
-module.exports.DisplayAddContact = (req,res) =>
-{
-    res.render('contact/details',{
-    title:'Add a new Contact',
-    contacts:'',
-    displayName: req.user ? req.user.displayName : ''
-  });
-}
 
-//Create new contact
-module.exports.CreateContact = (req,res) =>
+
+//Create new resource
+module.exports.CreateResource = (req,res) =>
 {
-    contacts.create({
-    name: req.body.name,
-    position:req.body.position,
-    company: req.body.company,
-    address:req.body.address,
-    contact:req.body.contact
+    resource.create({
+    topic: req.body.topic,
+    publisher:req.body.publisher,
+    publishDate: Date.parse(req.body.publishDate),
+    host:req.body.host,
+    categoryOne:req.body.categoryOne,
+    categoryTwo:req.body.categoryTwo,
+    language:req.body.language,
+    introduction:req.body.introduction,
+    promo: req.body.promo,
+    treasures :[]
   },(error,contacts)=> {
     if(error){
       console.log(error);
@@ -39,7 +46,7 @@ module.exports.CreateContact = (req,res) =>
     }
     else
     {
-      res.redirect('/businesscontact');
+      res.redirect('/dashboard');
     }
   });
 }
@@ -55,7 +62,7 @@ module.exports.DisplayEdit = (req,res) =>
     //let mongoose convert id to a HexString, if yes go to next if can not convert go to catech
     let id = mongoose.Types.ObjectId.createFromHexString(req.params.id);
       //find business contact by id
-      contacts.findById(id,(err,contacts) =>{
+      resource.findById(id,(err,resource) =>{
 
         if(err)
         {
@@ -64,10 +71,10 @@ module.exports.DisplayEdit = (req,res) =>
         }
         else
         {
-          console.log("Here is the contacts: %j", contacts );
-          res.render('contact/details',{
-            title:'Business Contact',
-            contacts: contacts,
+          console.log("Here is the resource: %j", resource );
+          res.render('dashboard/resourcesDetail',{
+            title:'Resources Detail',
+            resource: resource,
             displayName: req.user ? req.user.displayName : ''
           });
         }
@@ -79,24 +86,28 @@ module.exports.DisplayEdit = (req,res) =>
 }
 
 //Save contact
-module.exports.UpdateContact = (req,res) =>
+module.exports.UpdateResource = (req,res) =>
 {
-    //get a reference to the id of the contact to edit
+    //get a reference to the id of the resource to edit
     let id = req.params.id;
-    // create a new contact object to hold the changes
-    let contact = new contacts(
+    // create a new resource object to hold the changes
+    let resources = new resource(
         {
-            _id: id,
-            name: req.body.name,
-            position:req.body.position,
-            company: req.body.company,
-            address:req.body.address,
-            contact:req.body.contact
+            _id: id,         
+            topic: req.body.topic,
+            publisher:req.body.publisher,
+            publishDate: Date.parse(req.body.publishDate),
+            host:req.body.host,
+            categoryOne:req.body.categoryOne,
+            categoryTwo:req.body.categoryTwo,
+            language:req.body.language,
+            introduction:req.body.introduction,
+            promo: req.body.promo
         }
     );
 
-    //save contact object
-    contacts.update({_id:id},contact,(err)=>{
+    //save resource object
+    resource.update({_id:id},resources,(err)=>{
 
             if(err)
             {
@@ -105,18 +116,18 @@ module.exports.UpdateContact = (req,res) =>
             }
             else
             {
-                //refresh the contact list
-                res.redirect('/businesscontact');
+                //refresh the resource list
+                res.redirect('/dashboard');
             }
         });
 }
 
-//Delete contact
-module.exports.DeleteContact = (req,res) =>
+//Delete Resource
+module.exports.DeleteResource = (req,res) =>
 {
     //get a reference to the id of the contact
   let id = req.params.id;
-  contacts.remove({_id: id}, (err) =>{
+  resource.remove({_id: id}, (err) =>{
     if(err)
     {
       console.log(err);
@@ -124,7 +135,7 @@ module.exports.DeleteContact = (req,res) =>
     }
     else
     {
-      res.redirect('/businesscontact');
+      res.redirect('/dashboard');
     }
   });
 }

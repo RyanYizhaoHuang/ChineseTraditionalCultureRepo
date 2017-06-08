@@ -22,32 +22,33 @@
         <li><a class="font-Droid" href="/projects"><i class="fa fa-cubes" aria-hidden="true"></i> Projects <span class="sr-only">(current)</span></a></li>
       <% } %>
       <% if (title == "List") { %>
-        <li class="active"><a href="/itemlist"> 儒 <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/itemlist"> 儒 </a></li>
       <% } else { %>
-        <li><a  href="/itemlist"> 儒 <span class="sr-only">(current)</span></a></li>
+        <li><a  href="/itemlist"> 儒 </a></li>
       <% } %>
       <% if(title == "Ryan's Services") { %>
-        <li class="active"><a class="font-Droid" href="/services"><i class="fa fa-handshake-o" aria-hidden="true"></i> Services</a></li>
+        <li class="active"><a class="font-Droid" href="/services"> 释</a></li>
       <% } else { %>
-        <li><a class="font-Droid" href="/services"><i class="fa fa-handshake-o" aria-hidden="true"></i> Services</a></li>
+        <li><a class="font-Droid" href="/services"> 释</a></li>
       <% } %>
       <% if(title == "Contact Ryan") { %>
-        <li class="active"><a class="font-Droid" href="/contact"><i class="fa fa-phone" aria-hidden="true"></i> Contact</a></li>
+        <li class="active"><a class="font-Droid" href="/contact"> 道</a></li>
       <% } else { %>
-        <li><a class="font-Droid" href="/contact"><i class="fa fa-phone" aria-hidden="true"></i> Contact</a></li>
+        <li><a class="font-Droid" href="/contact"> 道</a></li>
       <% } %>
       <% if(title == "About Ryan") { %>
-        <li class="active"><a class="font-Droid" href="/about"><i class="fa fa-id-card-o" aria-hidden="true"></i> About</a></li>
+        <li class="active"><a class="font-Droid" href="/about">> 净空法师</a></li>
       <% } else { %>
-        <li><a class="font-Droid" href="/about"><i class="fa fa-id-card-o" aria-hidden="true"></i> About</a></li>
+        <li><a class="font-Droid" href="/about"> 净空法师</a></li>
       <% } %>
 
-  
+        <% if(typeof displayName == 'string' && displayName) { %>
         <% if(title == "dashboard") { %>
           <li  class="active"><a class="font-Droid" href="/dashboard"><i class="fa fa-address-book-o" aria-hidden="true"></i> DashBoard</a></li>
         <% } else { %>
           <li><a class="font-Droid" href="/dashboard"><i class="fa fa-address-book-o" aria-hidden="true"></i> DashBoard</a></li>
         <% } %>
+      <% } %>      
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">

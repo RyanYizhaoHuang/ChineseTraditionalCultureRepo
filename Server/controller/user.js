@@ -8,7 +8,7 @@ let User = UserModel.User; //alias for User
 //Display user login
 module.exports.DisplayLogin = (req,res) =>
 {
-    //check to see if the user is not alewady logged in
+    //check to see if the user is not already logged in
   if(!req.user)
   {
     //render the login page
@@ -22,7 +22,7 @@ module.exports.DisplayLogin = (req,res) =>
     return;
   }
   else{
-    return res.redirect('/businesscontact'); //redirect to contact list
+    return res.redirect('/dashboard'); //redirect to dashboard
   }
 }
 
@@ -31,7 +31,7 @@ module.exports.DisplayLogin = (req,res) =>
 module.exports.ProcessLogin = () =>
 {
     return passport.authenticate('local',{
-    successRedirect :'/businesscontact',
+    successRedirect :'/dashboard',
     failureRedirect: '/users/login',
     failureFlash:true
 })
@@ -79,7 +79,7 @@ module.exports.ProcessRegistration = (req,res) =>
         }
         //if registration is successful
         return passport.authorize('local')(req,res,()=>{
-          res.redirect('/businesscontact');
+          res.redirect('/dashboard');
         });
       });
 }
