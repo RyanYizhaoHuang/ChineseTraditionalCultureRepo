@@ -15,6 +15,7 @@ let treasure = mongoose.Schema(
         promo: { type: Boolean, default : false },
         click: { type: Number, default : 0 },
         imageUrl : String,
+        keyword: String,
         type: String  // Youtube,MP4, audio         
     }
 );
@@ -32,7 +33,8 @@ let resourcesSchema = mongoose.Schema(
         categoryOne: String,
         categoryTwo : String,
         language: String,   // Cantonese, Mandarin, English
-        imageUrl: String
+        imageUrl: String,
+        keyword: String
     },
     {
         collection: 'resources'

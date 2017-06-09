@@ -20,11 +20,11 @@
                     <input Name="publisher" type="text" class="form-control" id="PositionTextField" 
                             placeholder="发布者" value="<%= resource.publisher %>" required>
                 </div>
-
+                <p hidden id="hiddenDate"><%= resource.publishDate %></p>
                 <div class="form-group">
                 <label class="label_Styling" for="NameTextField">Publish Date：</label>
                 <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" name="publishDate" id="uploadTime" value="<%= resource.publishDate %>" required placeholder="<%= resource.publishDate %>"/>
+                    <input type='text' class="form-control" name="publishDate" id="uploadTime" value="" required placeholder="上传时间"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label for="CategoryTwoTextField">Category Two:</label>
                     <input Name="categoryTwo" type="text" class="form-control" id="CategoryTwoTextField" 
-                            placeholder="类别二" value="<%= resource.categoryTwo %>" required>
+                            placeholder="类别二" value="<%= resource.categoryTwo %>">
                 </div>
 
                 <div class="form-group">
@@ -55,10 +55,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="imageUrlTextField">Image:</label>
+                    <input Name="language" type="text" class="form-control" id="imageUrlTextField" 
+                            placeholder="图片" value="<%= resource.imageUrl %>">
+                </div>
+
+                <div class="form-group">
                     <label for="introductionTextField">Introduction:</label>
                     <textarea Name="introduction" class="form-control" id="introductionTextField" 
                             placeholder="详细介绍" value="<%= resource.introduction %>" required><%= resource.introduction %></textarea>
                 </div>
+
 
                 <div class="form-group">
                     <div class="checkbox">

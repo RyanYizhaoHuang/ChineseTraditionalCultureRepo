@@ -28,15 +28,20 @@ module.exports.DisplayDashboard = (req,res) =>
 //Create new resource
 module.exports.CreateResource = (req,res) =>
 {
+    let uploadDate = new Date(Date.parse(req.body.publishDate));
+    // fix timezone bug
+    uploadDate.setDate( uploadDate.getDate() + 1 );
     resource.create({
     topic: req.body.topic,
     publisher:req.body.publisher,
-    publishDate: Date.parse(req.body.publishDate),
+    publishDate: uploadDate,
     host:req.body.host,
     categoryOne:req.body.categoryOne,
     categoryTwo:req.body.categoryTwo,
     language:req.body.language,
     introduction:req.body.introduction,
+    imageUrl: req.body.imageUrl,
+    keyword :  req.body.topic + ',' + req.body.publisher + ',' + req.body.host + ',' + req.body.language, 
     promo: req.body.promo,
     treasures :[]
   },(error,contacts)=> {
@@ -51,6 +56,14 @@ module.exports.CreateResource = (req,res) =>
   });
 }
 
+//display add recource
+module.exports.DisplayDetail = (req,res) => {
+    res.render('dashboard/resourcesDetail',{
+    title:'Add a new resource',
+    resource: '',
+    displayName: req.user ? req.user.displayName : ''
+  });
+}
 
 //Display Edit page
 //Find the contact by id and populate the form 
@@ -90,18 +103,22 @@ module.exports.UpdateResource = (req,res) =>
 {
     //get a reference to the id of the resource to edit
     let id = req.params.id;
+    let uploadDate = new Date(Date.parse(req.body.publishDate));
+    // fix timezone bug
+    uploadDate.setDate( uploadDate.getDate() + 1 );
     // create a new resource object to hold the changes
     let resources = new resource(
         {
             _id: id,         
             topic: req.body.topic,
             publisher:req.body.publisher,
-            publishDate: Date.parse(req.body.publishDate),
+            publishDate: uploadDate,
             host:req.body.host,
             categoryOne:req.body.categoryOne,
             categoryTwo:req.body.categoryTwo,
             language:req.body.language,
             introduction:req.body.introduction,
+            imageUrl: req.body.imageUrl,
             promo: req.body.promo
         }
     );
