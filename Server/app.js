@@ -74,6 +74,7 @@ app.use(passport.session());
 app.use('/', index); //top level links
 app.use('/dashboard',dashboard); //dashboard links - start with /dashboard
 app.use('/users', users); // users link - start with /users
+app.use('/itemlist', resources); // users link - start with /itemlist
 
 // User Configuration
 let UserModel = require('./Models/users');

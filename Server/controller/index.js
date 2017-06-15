@@ -70,12 +70,3 @@ module.exports.DisplayProjectDetail = (req,res) =>
     displayName: req.user ? req.user.displayName : ''
   });
 }
-
-//Display items list page
-module.exports.DisplayItemList = (req,res) =>
-{
-  res.render('itemlist',{
-    title: "List",
-    displayName: req.user ? req.user.displayName : ''
-  });
-}

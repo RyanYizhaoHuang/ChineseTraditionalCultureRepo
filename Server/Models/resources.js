@@ -30,7 +30,7 @@ let resourcesSchema = mongoose.Schema(
         host: String,  //主持人
         treasures : [treasure],
         promo : { type: Boolean, default: false }, 
-        categoryOne: String,
+        categoryOne: String,  //ru 儒, shi 释, dao 道,jingkong 净空, nanshi 南师
         categoryTwo : String,
         language: String,   // Cantonese, Mandarin, English
         imageUrl: String,

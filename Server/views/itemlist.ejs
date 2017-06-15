@@ -9,31 +9,30 @@
         <!--Left materials list-->
      <div class="col-md-8">
       <ul class="media-list">
-                        <li class="media boxshadow">
-                            <div class="
-                            media-left listImageLink">
-                            <a href="#">
-                                <img class="img-responsive img-rounded"  src="https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?w=640&ssl=1" class="img-responsive" alt="...">
-                            </a>
+        <% for (let count = 0; count < resources.length; count++) { %>
+
+            <li class="media boxshadow">
+                <div class="
+                    media-left listImageLink">
+                    <a href="/resource/<%= resources[count]._id %>">
+                        <img class="img-responsive img-rounded"  src="https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?w=640&ssl=1" class="img-responsive" alt="...">
+                    </a>
                             </div>
                             <div class="media-body">
-                            <h4 class="media-heading">Media heading</h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                            <p><a href="#">This a link</a></p>
+                            <h4 class="media-heading"><%= resources[count].topic%></h4>
+                            <p>
+                            
+                            <i class="fa fa-calendar" aria-hidden="true"></i> 发布时间  <span><%= moment(resources[count].publishDate).format('YYYY/MM/DD') %></span> 
+                            <i class="fa fa-podcast" aria-hidden="true"></i> 发布者： <span><%= resources[count].publisher %></span>
+                            </p>
+                            <p>
+                            <i class="fa fa-user" aria-hidden="true"></i> 主讲人 <span><%= resources[count].host %></span>
+                            </p>                            
+                            <%= resources[count].introduction %>
+                            <p><a href="/resource/<%= resources[count]._id %>">点击浏览</a></p>
                             </div>
                         </li>
-                        <li class="media boxshadow">
-                            <div class="media-left listImageLink">
-                            <a href="#">
-                                <img class="img-responsive img-rounded"  src="http://www.hwazan.org/uploadfile/2016/0719/20160719111423465.jpg" class="img-responsive" alt="...">
-                            </a>
-                            </div>
-                            <div class="media-body">
-                            <h4 class="media-heading">Media heading</h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                            <p><a href="#">This a link</a></p>
-                            </div>
-                        </li>
+        <% } %>
         </ul>
      </div>
      <!--End Left materials list-->                     

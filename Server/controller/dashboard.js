@@ -13,7 +13,7 @@ module.exports.DisplayDashboard = (req,res) =>
       }
       else
       {
-        console.log("Here is the resources: %j", resource );
+        // console.log("Here is the resources: %j", resource );
         res.render('dashboard/index',{
         title:'Add a new resource',
         resources: resource,
