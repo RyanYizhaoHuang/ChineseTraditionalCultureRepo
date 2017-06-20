@@ -28,13 +28,21 @@ module.exports.DisplayLogin = (req,res) =>
 
 
 //Process to login
-module.exports.ProcessLogin = () =>
+module.exports.ProcessLogin = (req,res) =>
 {    
+    
     return passport.authenticate('local',{
     successReturnToOrRedirect : 'back',
     failureRedirect: '/users/login',
     failureFlash:true
-    })
+  }
+  // ,
+  // (req,res)=>{
+  //   //let backURL = req.header('Referer') || '/dashboard';  
+  //   //console.log("BackUrl" + backURL);  
+  //   res.redirect('/dashboard');
+  // }
+  );
 }
 
 //Display registration page
@@ -55,7 +63,6 @@ module.exports.DisplayRegistration = (req,res) =>
 //Process user register
 module.exports.ProcessRegistration = (req,res) =>
 {
-    let backURL=req.header('Referer') || '/dashboard';
     User.register(
     new User({
         username:req.body.username,
@@ -80,7 +87,7 @@ module.exports.ProcessRegistration = (req,res) =>
         }
         //if registration is successful
         return passport.authorize('local')(req,res,()=>{
-          res.redirect(backURL);
+          res.redirect('/');
         });
       });
 }

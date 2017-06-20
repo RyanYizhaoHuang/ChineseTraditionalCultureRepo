@@ -1,0 +1,99 @@
+<!--Treasure Item(Play treasure).ejs-->
+<% include partials/header.ejs %>
+<% include partials/navigationBar.ejs %> 
+
+    <!-- Body Conatiner -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12"><h2><%= title %></h2> </div>
+        </div>
+        <!-- project list container-->
+        <div class="container topGap">
+        <div class="row">
+         
+            <!--Treasures Item Left-->
+            <div class="col-md-9">
+            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                 <% if(treasure.overSeaUrl) { %>                
+                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">海外资源</a></li>
+                 <%  } %>
+                 <% if(treasure.chinaUrl) { %>                
+                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">中国大陆</a></li>
+                 <% } %>
+                 <% if(treasure.optionalUrl) { %>                
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">其他</a></li>
+                 <% } %>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                 <% if(treasure.overSeaUrl) { %>                                
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <% if (treasure.type == 'video') { %>
+                        <iframe class="embed-responsive-item" src="<%= treasure.overSeaUrl %>"  allowfullscreen></iframe>
+                        <% } else { %>
+                        <div><%= treasure.type %></div>
+                        <% } %>
+                    </div>
+                 <% } %>
+                </div>
+                 <% if(treasure.chinaUrl) { %>                
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <% if(treasure.type =='video') { %>
+                        <iframe class="embed-responsive-item" src="<%= treasure.chinaUrl %>"  allowfullscreen></iframe>
+                        <% } else {%>
+                        <div><%= treasure.type %></div>
+                        <% } %>
+                    </div>
+                </div>
+                 <% } %>
+                 <% if(treasure.optionalUrl) { %>                
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <% if(treasure.type =='video') { %>
+                        <iframe class="embed-responsive-item" src="<%= treasure.optionalUrl %>"  allowfullscreen></iframe>
+                        <% } else {%>
+                        <div><%= treasure.type %></div>
+                        <% } %>
+                    </div>
+                </div>
+                 <% } %>
+            </div>
+            <!-- End Nav tabs-->
+
+            <% if(treasure.optionalNote) { %>
+            <!-- Treasure Info Div-->
+            <div><%= treasure.optionalNote %></div>
+                <div class="treasure-info-div">
+            </div>
+            <!-- End Treasure Info Div-->
+            <% } %>
+            </div>
+            <!-- end Treasures Item container Left-->
+
+            <!--Treasures Item Right-->            
+            <div class="col-md-3">
+                
+            </div>  
+            <!--End Treasures Item Right-->
+    
+                
+            <!--  manage div -->
+            <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
+                        <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
+                    </div>
+            </div>
+            <!-- End manage div -->
+            </div>
+
+    
+    <!-- Body Continer End -->
+<% include partials/footer.ejs %>

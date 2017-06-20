@@ -25,10 +25,10 @@
                 <p><%= resource.treasures[count].optionalNote %></p>
             </div>
             <p>
-                <a class="btn btn-default" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button">点击浏览 »</a>
+                <a class="btn btn-info" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-play-circle"></i> 点击浏览 »</a>
                  <% if(displayName) { %>
-                <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button">更新 »</a>
-                <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button">删除 »</a>                  
+                <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
+                <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
             <% } %>    
             </p>
             </div><!-- /.col-lg-4 -->

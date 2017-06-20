@@ -16,7 +16,8 @@ router.get('/', (req, res, next) => {
 router.get('/login',(req,res,next) =>{
   userController.DisplayLogin(req,res);
   // Post /login - process the login page  -- handle the login feature
-}).post('/login', userController.ProcessLogin());
+}).post('/login', userController.ProcessLogin()
+);
 
 // get /register - render the 
 router.get('/register',(req,res,next)=>{

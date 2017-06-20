@@ -40,4 +40,10 @@ router.get('/nan',(req,res, next)=>{
 router.get('/:id',(req,res,next)=>{
     resourcesController.DisplayTreasuresList(req,res);
 });
+
+
+//display treasure item 
+router.get('/treasure/:resourceId/:treasureId',(req,res,next)=>{
+    resourcesController.DisplayTreasureItem(req,res);
+});
 module.exports = router;

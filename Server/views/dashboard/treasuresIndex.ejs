@@ -10,6 +10,7 @@
      <div class="col-md-12">
         <a class="btn btn-success" href="/dashboard/addTreasure/<%= resource._id %>"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Treasure</a>
         <a href="/dashboard" class="btn btn-primary"><i class="fa fa-undo"></i> Back</a>
+        <a href="/itemlist/<%= resource._id %>" class="btn btn-info"><i class="fa fa-list-alt"></i> Display Treasures</a>
      </div>
      <div class="col-md-12 topGap">
         <table class="table table-hover">
@@ -24,7 +25,7 @@
             </tr>
             <% for (let count = 0; count < resource.treasures.length; count++) { %>
             <tr class="text-primary">
-                <td><%= resource.treasures[count].title %></td>
+                <td><a href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>"><%= resource.treasures[count].title %></a></td>
                 <td><%= resource.treasures[count].presenter %></td>
                 <td><%= resource.treasures[count].sortNumber %></td>
                 <td><%= resource.treasures[count].type %></td>

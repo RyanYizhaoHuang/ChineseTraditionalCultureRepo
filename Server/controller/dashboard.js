@@ -121,29 +121,17 @@ module.exports.UpdateResource = (req,res) =>
             imageUrl: req.body.imageUrl,
             optionalUrl: req.body.optionalUrl,
             promo: req.body.promo,
+            treasures: req.body.treasures,
             keyword :  req.body.topic + ',' + req.body.publisher + ',' + req.body.host + ',' + req.body.language,             
         }
     );
 
-    //save resource object
-    resources.save((err) => {
-          if(err)
-            {
-                console.log(err);
-                res.end(err);
-            }
-            else
-            {
-                //refresh the resource list
-                res.redirect('/dashboard');
-            }
-        });
-    // resource.update({_id:id},resources,(err)=>{
-
-    //         if(err)
+    // //save resource object
+    // resources.save((err) => {
+    //       if(err)
     //         {
     //             console.log(err);
-    //             res.end(error);
+    //             res.end(err);
     //         }
     //         else
     //         {
@@ -151,6 +139,19 @@ module.exports.UpdateResource = (req,res) =>
     //             res.redirect('/dashboard');
     //         }
     //     });
+    resource.update({_id:id},resources,(err)=>{
+
+            if(err)
+            {
+                console.log(err);
+                res.end(error);
+            }
+            else
+            {
+                //refresh the resource list
+                res.redirect('/dashboard');
+            }
+        });
 }
 
 //Delete Resource
