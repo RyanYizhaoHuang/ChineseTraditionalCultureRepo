@@ -29,12 +29,12 @@ module.exports.DisplayLogin = (req,res) =>
 
 //Process to login
 module.exports.ProcessLogin = () =>
-{
+{    
     return passport.authenticate('local',{
-    successRedirect :'/dashboard',
+    successReturnToOrRedirect : 'back',
     failureRedirect: '/users/login',
     failureFlash:true
-})
+    })
 }
 
 //Display registration page
@@ -55,6 +55,7 @@ module.exports.DisplayRegistration = (req,res) =>
 //Process user register
 module.exports.ProcessRegistration = (req,res) =>
 {
+    let backURL=req.header('Referer') || '/dashboard';
     User.register(
     new User({
         username:req.body.username,
@@ -79,7 +80,7 @@ module.exports.ProcessRegistration = (req,res) =>
         }
         //if registration is successful
         return passport.authorize('local')(req,res,()=>{
-          res.redirect('/dashboard');
+          res.redirect(backURL);
         });
       });
 }
@@ -87,8 +88,11 @@ module.exports.ProcessRegistration = (req,res) =>
 //Process logout
 module.exports.ProcessLogout = (req,res) =>
 {
+    let backURL=req.header('Referer') || '/dashboard';
+  
     req.logout();
-    res.redirect('/'); //redirect to homepage
+    // res.redirect('/'); //redirect to homepage
+    res.redirect(backURL); //redirect to homepage
 }
 
 

@@ -1,4 +1,4 @@
-<!--contact.ejs-->
+<!--Resources Index (Resources List).ejs-->
 <% include ../partials/header.ejs %>
 <% include ../partials/navigationBar.ejs %> 
 
@@ -7,26 +7,28 @@
     <h2><%= title %></h2>
     <div class="row">
         <!--Left  -->
-     <div class="col-md-8">
+     <div class="col-md-12">
         <a class="btn btn-success" href="dashboard/detail"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Resource</a>
      </div>
-     <div class="col-md-8 topGap">
+     <div class="col-md-12 topGap">
         <table class="table table-hover">
             <tr  class="bg-success  text-success">
                 <th>标题</th>
                 <th>发布者</th>
                 <th>演讲人</th>
                 <th>语言</th>
+                <th>学派</th>
                 <th></th>
                 <th></th>
                 <th></th>
             </tr>
             <% for (let count = 0; count < resources.length; count++) { %>
             <tr class="text-primary">
-                <td><%= resources[count].topic %></td>
+                <td><a href="/dashboard/treasurelist/<%= resources[count]._id %>"><%= resources[count].topic %></a></td>
                 <td><%= resources[count].publisher %></td>
                 <td><%= resources[count].host %></td>
                 <td><%= resources[count].language %></td>
+                <td><%= resources[count].categoryOne %></td>
                 <td class="text-center"><a class="btn btn-primary" href="/dashboard/addTreasure/<%= resources[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 添加资料</a></td>
                 <td class="text-center"><a class="btn btn-primary" href="/dashboard/edit/<%= resources[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 修改</a></td>
                 <td class="text-center"><a class="btn btn-danger" href="/dashboard/delete/<%= resources[count]._id %>" role="button"><i class="fa fa-trash-o"></i> 删除</a></td>
@@ -36,9 +38,7 @@
      </div>
      <!--End Left -->                     
         <!--Right  -->           
-        <div class="col-md-4">
 
-        </div>
         <!--End Right -->           
     </div>
 </div>

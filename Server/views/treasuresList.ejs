@@ -1,0 +1,42 @@
+<!--Treasure List.ejs-->
+<% include partials/header.ejs %>
+<% include partials/navigationBar.ejs %> 
+
+    <!-- Body Conatiner -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12"><h2><%= title %></h2> </div>
+        </div>
+        <!-- project list container-->
+        <div class="container topGap">
+        <div class="row">
+            <% for (let count = 0; count < resource.treasures.length; count++) { %>
+            <!--Treasures List-->
+            <div class="col-md-4">
+            <a href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>">
+                 <img class="img-rounded img-responsive" 
+                 src="<%= resource.treasures[count].imageUrl %>" 
+                 alt="<%= resource.treasures[count].title %>" 
+                 width=auto height="250">
+            </a>
+            <h4 class="treasureList-title"><%= resource.treasures[count].title %></h4>
+            <div class="treasureList-intro-hide">
+                <p><%= resource.treasures[count].optionalNote %></p>
+            </div>
+            <p>
+                <a class="btn btn-default" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button">点击浏览 »</a>
+                 <% if(displayName) { %>
+                <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button">更新 »</a>
+                <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button">删除 »</a>                  
+            <% } %>    
+            </p>
+            </div><!-- /.col-lg-4 -->
+            <% } %>
+        </div>
+        </div>
+        <!-- end project list container-->    
+    
+    </div>
+    <!-- Body Continer End -->
+<% include partials/footer.ejs %>

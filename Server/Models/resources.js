@@ -16,7 +16,9 @@ let treasure = mongoose.Schema(
         click: { type: Number, default : 0 },
         imageUrl : String,
         keyword: String,
-        type: String  // Youtube,MP4, audio         
+        type: String,  // Youtube,MP4, audio
+        sortNumber : Number,
+        createDate: { type: Date, defaulr : Date.now() }         
     }
 );
 
@@ -32,9 +34,10 @@ let resourcesSchema = mongoose.Schema(
         promo : { type: Boolean, default: false }, 
         categoryOne: String,  //ru 儒, shi 释, dao 道,jingkong 净空, nanshi 南师
         categoryTwo : String,
-        language: String,   // Cantonese, Mandarin, English
+        language: String,   // can(Cantonese),(man)Mandarin, (eng)English
         imageUrl: String,
-        keyword: String
+        keyword: String,
+        optionalUrl: String  // 链接到有关的网站     
     },
     {
         collection: 'resources'

@@ -41,6 +41,11 @@
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/jingkong"> 净空法师</a></li>
       <% } %>
+            <% if(title == "About Ryan") { %>
+        <li class="active"><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
+      <% } else { %>
+        <li><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
+      <% } %>
 
         <% if(typeof displayName == 'string' && displayName) { %>
         <% if(title == "dashboard") { %>

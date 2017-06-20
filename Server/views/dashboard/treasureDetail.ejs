@@ -1,0 +1,99 @@
+<!--dashboard resourcesDetail.ejs-->
+<!--Display detail of the single recource and create new resource-->
+<% include ../partials/header.ejs %>
+<% include ../partials/navigationBar.ejs %> 
+<!-- Body Container -->
+
+<div class="container">
+    <div class="row">
+            <h1><%= title %></h1>
+            <div class="col-md-7">
+
+            <form method="post">
+                <div class="form-group">
+                    <label for="TitleTextField">Title:</label>
+                    <input Name="title" type="text" class="form-control" id="TitleTextField" 
+                            placeholder="标题" value="<%= treasure.title %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="PresenterTextField">Presenter:</label>
+                    <input Name="presenter" type="text" class="form-control" id="PresenterTextField" 
+                            placeholder="演讲人" value="<%= treasure.presenter %>" required>
+                </div>
+                <p hidden id="hiddenDate"><%= treasure.uploadDate %></p>
+                <!--CreateDate-->
+                <input Name="createDate" id="createDate" value="<%= treasure.createDate %>">
+                
+                <div class="form-group">
+                <label class="label_Styling" for="uploadDate">Upload Date：</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" name="uploadDate" id="uploadDate" value="" required placeholder="上传时间"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+                 </div>
+
+
+                <div class="form-group">
+                    <label for="overseaUrl">Oversea Url:</label>
+                    <input Name="overSeaUrl" type="text" class="form-control" id="overseaUrl"
+                             placeholder="海外地址(Optional)" value="<%= treasure.overSeaUrl %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="chinaUrl">China Url:</label>
+                    <input Name="chinaUrl" type="text" class="form-control" id="chinaUrl"
+                             placeholder="中國地址(Optional)" value="<%= treasure.chinaUrl %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="optionalUrl">Other Url:</label>
+                    <input Name="optionalUrl" type="text" class="form-control" id="optionalUrl"
+                             placeholder="其他地址(Optional)" value="<%= treasure.optionalUrl %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="imageUrlTextField">Image:</label>
+                    <input Name="imageUrl" type="text" class="form-control" id="imageUrlTextField" 
+                            placeholder="图片" value="<%= treasure.imageUrl %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="CategoryTextField">Type :</label>
+                    <select class="form-control" id="CategoryOneTextField" name="type" required>
+                                <option <% if(treasure.type === 'video') { %> selected="selected" <% } %> value="video">video</option>
+                                <option <% if(treasure.type === 'MP4') { %> selected="selected" <% } %> value="MP4">MP4</option>
+                                <option <% if(treasure.type === 'audio') { %> selected="selected" <% } %> value="audio">音频</option>
+                                <option <% if(treasure.type === 'pdf') { %> selected="selected" <% } %> value="pdf">书籍</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="SortNumberTextField">Sort Number：</label>
+                    <input Name="sortNumber" type="text" class="form-control" id="SortNumberTextField" 
+                            placeholder="序号" value="<%= treasure.sortNumber %>">
+                </div>
+
+                <div class="form-group">
+                    <label for="optionalNoteTextField">Note(Optional):</label>
+                    <textarea Name="optionalNote" class="form-control" id="optionalNoteTextField" 
+                            placeholder="备注(Optional)" value="<%= treasure.optionalNote %>"><%= treasure.optionalNote %></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label for="promoCheckbox">
+                        <input type="checkbox" Name="promo" <%= treasure.promo === true ? "checked" : "" %> id="promoCheckbox" value="true"> 推广
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <a href="/dashboard/treasurelist/<%= resource._id %>" class="btn btn-primary"><i class="fa fa-undo"></i> Back</a>
+            </form>
+            </div>
+    </div>
+</div>
+
+<!-- Body Container End-->
+<% include ../partials/footer.ejs %>

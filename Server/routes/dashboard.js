@@ -42,4 +42,30 @@ router.get('/delete/:id',userController.RequireAuth,(req,res,next)=>{
   dashboardController.DeleteResource(req,res);
 });
 
+//display create treasure page
+router.get('/addTreasure/:id',userController.RequireAuth,(req,res,next)=>{
+  dashboardController.DisplayTreasureDetail(req,res);
+}).post('/addTreasure/:id',userController.RequireAuth,(req,res,next)=>{
+  dashboardController.CreateTreasure(req,res);
+});
+
+//display treasures edit
+router.get('/treasure/:resourceid/:treasureid',userController.RequireAuth,(req,res,next)=>{
+  dashboardController.DisplayTreasureEdit(req,res);
+}).post('/treasure/:resourceid/:treasureid',userController.RequireAuth,(req,res,next)=>{
+  dashboardController.UpdateTreasure(req,res);
+});
+
+
+//Delete Treasure
+router.get('/treasure/delete/:resourceid/:treasureid',userController.RequireAuth,(req,res,next)=>{
+  dashboardController.DeleteTreasure(req,res);
+});
+
+
+// Display treasures list 
+router.get('/treasurelist/:id',(req,res,next) =>{
+  dashboardController.DisplayTreasureListIndex(req,res);
+});
 module.exports = router;
+

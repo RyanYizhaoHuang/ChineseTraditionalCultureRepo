@@ -39,8 +39,13 @@
                 </div>
                 <div class="form-group">
                     <label for="CategoryTextField">Category One :</label>
-                    <input Name="categoryOne" type="text" class="form-control" id="CategoryOneTextField" 
-                            placeholder="类别一" value="<%= resource.categoryOne %>" required>
+                    <select class="form-control" id="CategoryOneTextField" name="categoryOne" required>
+                                <option <% if(resource.categoryOne === 'ru') { %> selected="selected" <% } %> value="ru">儒家</option>
+                                <option <% if(resource.categoryOne === 'shi') { %> selected="selected" <% } %> value="shi">释家</option>
+                                <option <% if(resource.categoryOne === 'dao') { %> selected="selected" <% } %> value="dao">道家</option>
+                                <option <% if(resource.categoryOne === 'jingkong') { %> selected="selected" <% } %> value="jingkong">净空法师</option>
+                                <option <% if(resource.categoryOne === 'nan') { %> selected="selected" <% } %> value="nan">南怀瑾老师</option>                                
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="CategoryTwoTextField">Category Two:</label>
@@ -50,13 +55,16 @@
 
                 <div class="form-group">
                     <label for="languageTextField">Language:</label>
-                    <input Name="language" type="text" class="form-control" id="languageTextField" 
-                            placeholder="語言" value="<%= resource.language %>" required>
+                          <select class="form-control" id="languageTextField" name="language" required>
+                                <option <% if(resource.language === 'man') { %> selected="selected" <% } %> value="man">国语</option>
+                                <option <% if(resource.language === 'can') { %> selected="selected" <% } %> value="can">粤语</option>
+                                <option <% if(resource.language === 'eng') { %> selected="selected" <% } %> value="eng">英语</option>
+                           </select>
                 </div>
 
                 <div class="form-group">
                     <label for="imageUrlTextField">Image:</label>
-                    <input Name="language" type="text" class="form-control" id="imageUrlTextField" 
+                    <input Name="imageUrl" type="text" class="form-control" id="imageUrlTextField" 
                             placeholder="图片" value="<%= resource.imageUrl %>">
                 </div>
 
@@ -66,6 +74,11 @@
                             placeholder="详细介绍" value="<%= resource.introduction %>" required><%= resource.introduction %></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label for="optionalUrlTextField">Optional Url:</label>
+                    <input Name="optionalUrl" type="text" class="form-control" id="imageUrlTextField" 
+                            placeholder="相关链接" value="<%= resource.optionalUrl %>">
+                </div>
 
                 <div class="form-group">
                     <div class="checkbox">
@@ -75,6 +88,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Submit</button>
+                <a href="/dashboard" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
             </form>
             </div>
     </div>
