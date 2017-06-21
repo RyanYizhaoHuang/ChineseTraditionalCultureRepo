@@ -29,7 +29,7 @@
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content treasure-item-tag-content">
                  <% if(treasure.overSeaUrl) { %>                                
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <!-- 16:9 aspect ratio -->
@@ -69,28 +69,33 @@
 
             <% if(treasure.optionalNote) { %>
             <!-- Treasure Info Div-->
-            <div><%= treasure.optionalNote %></div>
-                <div class="treasure-info-div">
+            <div>
+                <div class="treasure-info-div"><%= treasure.optionalNote %></div>
             </div>
             <!-- End Treasure Info Div-->
             <% } %>
+
+            <p><a class="btn btn-info" href="/itemlist/<%= resource._id %>" role="button"><i class="fa fa-undo"></i> 返回列表</a></p>                  
+            
             </div>
             <!-- end Treasures Item container Left-->
 
             <!--Treasures Item Right-->            
             <div class="col-md-3">
-                
+
             </div>  
             <!--End Treasures Item Right-->
     
                 
             <!--  manage div -->
+            <% if(displayName) { %>
             <div class="row">
                     <div class="col-md-12">
                         <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
                         <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
                     </div>
             </div>
+            <% } %>
             <!-- End manage div -->
             </div>
 
