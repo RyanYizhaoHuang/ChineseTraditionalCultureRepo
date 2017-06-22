@@ -18,7 +18,7 @@ let treasure = mongoose.Schema(
         keyword: String,
         type: String,  // Youtube,MP4, audio
         sortNumber : Number,
-        createDate: { type: Date, defaulr : Date.now() }         
+        createDate: { type: Date, default : Date.now() }         
     }
 );
 

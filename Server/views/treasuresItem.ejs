@@ -8,97 +8,157 @@
         <div class="row">
             <div class="col-md-12"><h2><%= title %></h2> </div>
         </div>
-        <!-- project list container-->
+        <!-- Treasure Item container-->
         <div class="container topGap">
         <div class="row">
          
             <!--Treasures Item Left-->
             <div class="col-md-9">
             
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                 <% if(treasure.overSeaUrl) { %>                
-                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">海外资源</a></li>
-                 <%  } %>
-                 <% if(treasure.chinaUrl) { %>                
-                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">中国大陆</a></li>
-                 <% } %>
-                 <% if(treasure.optionalUrl) { %>                
-                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">其他</a></li>
-                 <% } %>
-            </ul>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <% if(treasure.overSeaUrl) { %>                
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">海外资源</a></li>
+                    <%  } %>
+                    <% if(treasure.chinaUrl) { %>                
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">中国大陆</a></li>
+                    <% } %>
+                    <% if(treasure.optionalUrl) { %>                
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">其他</a></li>
+                    <% } %>
+                </ul>
 
-            <!-- Tab panes -->
-            <div class="tab-content treasure-item-tag-content">
-                 <% if(treasure.overSeaUrl) { %>                                
-                <div role="tabpanel" class="tab-pane active" id="home">
-                    <!-- 16:9 aspect ratio -->
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <% if (treasure.type == 'video') { %>
-                        <iframe class="embed-responsive-item" src="<%= treasure.overSeaUrl %>"  allowfullscreen></iframe>
-                        <% } else { %>
-                        <div><%= treasure.type %></div>
-                        <% } %>
+                <!-- Tab panes -->
+                <div class="tab-content treasure-item-tag-content">
+                    <% if(treasure.overSeaUrl) { %>                                
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if (treasure.type == 'video') { %>
+                            <iframe class="embed-responsive-item" src="<%= treasure.overSeaUrl %>"  allowfullscreen></iframe>
+                            <% } else { %>
+                            <div><%= treasure.type %></div>
+                            <% } %>
+                        </div>
                     </div>
-                 <% } %>
-                </div>
-                 <% if(treasure.chinaUrl) { %>                
-                <div role="tabpanel" class="tab-pane" id="profile">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <% if(treasure.type =='video') { %>
-                        <iframe class="embed-responsive-item" src="<%= treasure.chinaUrl %>"  allowfullscreen></iframe>
-                        <% } else {%>
-                        <div><%= treasure.type %></div>
-                        <% } %>
+                    <% } %>                
+                    <% if(treasure.chinaUrl) { %>                
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if(treasure.type =='video') { %>
+                            <iframe class="embed-responsive-item" src="<%= treasure.chinaUrl %>"  allowfullscreen></iframe>
+                            <% } else {%>
+                            <div><%= treasure.type %></div>
+                            <% } %>
+                        </div>
                     </div>
-                </div>
-                 <% } %>
-                 <% if(treasure.optionalUrl) { %>                
-                <div role="tabpanel" class="tab-pane" id="messages">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <% if(treasure.type =='video') { %>
-                        <iframe class="embed-responsive-item" src="<%= treasure.optionalUrl %>"  allowfullscreen></iframe>
-                        <% } else {%>
-                        <div><%= treasure.type %></div>
-                        <% } %>
+                    <% } %>
+                    <% if(treasure.optionalUrl) { %>                
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if(treasure.type =='video') { %>
+                            <iframe class="embed-responsive-item" src="<%= treasure.optionalUrl %>"  allowfullscreen></iframe>
+                            <% } else {%>
+                            <div><%= treasure.type %></div>
+                            <% } %>
+                        </div>
                     </div>
+                    <% } %>
                 </div>
-                 <% } %>
-            </div>
-            <!-- End Nav tabs-->
+                <!-- End Nav tabs-->
 
-            <% if(treasure.optionalNote) { %>
-            <!-- Treasure Info Div-->
-            <div>
-                <div class="treasure-info-div"><%= treasure.optionalNote %></div>
-            </div>
-            <!-- End Treasure Info Div-->
-            <% } %>
+                <% if(treasure.optionalNote) { %>
+                <!-- Treasure Info Div-->
+                <div>
+                    <div class="treasure-info-div"><%= treasure.optionalNote %></div>
+                </div>
+                <!-- End Treasure Info Div-->
+                <% } %>
 
-            <p><a class="btn btn-info" href="/itemlist/<%= resource._id %>" role="button"><i class="fa fa-undo"></i> 返回列表</a></p>                  
-            
+                <p><a class="btn btn-info" href="/itemlist/<%= resource._id %>" role="button"><i class="fa fa-undo"></i> 返回列表</a></p>                  
+                
+                
+                <!--  manage div -->
+                <% if(displayName) { %>
+                    <p>
+                         <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
+                         <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
+                    </p>
+                <% } %>
+                <!-- End manage div -->
             </div>
             <!-- end Treasures Item container Left-->
 
-            <!--Treasures Item Right-->            
+            <!--Treasures List Right-->            
             <div class="col-md-3">
+                <h4><%= resource.topic %></h4>
+                <!-- Treasure List item-->
+                <% for (let count = (treasure.sortNumber - 2); count < (treasure.sortNumber + 2); count++) { %>
+                <% if((count >=0) && (count != treasure.sortNumber - 1) && (count < resource.treasures.length)) {%>
+                <div class="row topGap boxshadow">
+                       <!-- Nav tabs -->
+                <ul class="nav nav-tabs treasure-item-right-tab" role="tablist">
+                    <% if(resource.treasures[count].overSeaUrl) { %>                
+                    <li role="presentation" class="active"><a href="#overseaUrl" role="tab" data-toggle="tab">海外资源</a></li>
+                    <%  } %>
+                    <% if(resource.treasures[count].chinaUrl) { %>                
+                    <li role="presentation"><a href="#chinaUrl"  role="tab" data-toggle="tab">中国大陆</a></li>
+                    <% } %>
+                    <% if(resource.treasures[count].optionalUrl) { %>                
+                    <li role="presentation"><a href="#otherUrl"  role="tab" data-toggle="tab">其他</a></li>
+                    <% } %>
+                </ul>
 
-            </div>  
-            <!--End Treasures Item Right-->
-    
-                
-            <!--  manage div -->
-            <% if(displayName) { %>
-            <div class="row">
-                    <div class="col-md-12">
-                        <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
-                        <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= treasure._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <% if(resource.treasures[count].overSeaUrl) { %>                                
+                    <div role="tabpanel" class="tab-pane active" id="overseaUrl">
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if (resource.treasures[count].type == 'video') { %>
+                            <iframe class="embed-responsive-item" src="<%= resource.treasures[count].overSeaUrl %>"  allowfullscreen></iframe>
+                            <% } else { %>
+                            <div><%= resource.treasures[count].type %></div>
+                            <% } %>
+                        </div>
                     </div>
-            </div>
-            <% } %>
-            <!-- End manage div -->
-            </div>
-
+                    <% } %>                
+                    <% if(resource.treasures[count].chinaUrl) { %>                
+                    <div role="tabpanel" class="tab-pane" id="chinaUrl">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if(resource.treasures[count].type =='video') { %>
+                            <iframe class="embed-responsive-item" src="<%= resource.treasures[count].chinaUrl %>"  allowfullscreen></iframe>
+                            <% } else {%>
+                            <div><%= resource.treasures[count].type %></div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(resource.treasures[count].optionalUrl) { %>                
+                    <div role="tabpanel" class="tab-pane" id="otherUrl">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if(resource.treasures[count].type =='video') { %>
+                            <iframe class="embed-responsive-item" src="<%= resource.treasures[count].optionalUrl %>"  allowfullscreen></iframe>
+                            <% } else {%>
+                            <div><%= resource.treasures[count].type %></div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <!-- End Nav tabs-->
+                <div class="treasure-list-info-div">
+                    <%= resource.treasures[count].title %>
+                </div>
+                </div><!--End row-->
+                <% } /* End if(count)*/%>
+                <% } /* End for loop */%>
+                <!--End  Treasure List item-->
+            </div>  
+            <!--End Treasures List Right-->          
+        </div>
+        </div>
+    </div>
     
     <!-- Body Continer End -->
 <% include partials/footer.ejs %>

@@ -6,34 +6,44 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-12"><h2><%= title %></h2> </div>
+            <div class="col-md-12">
+                <h2><%= title %></h2> 
+                <% if(displayName) { %>                
+                <a class="btn btn-success" href="/dashboard/addTreasure/<%= resource._id %>"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Treasure</a>
+                <% } %>
+            </div>
         </div>
+
         <!-- project list container-->
         <div class="container topGap">
-        <div class="row">
             <% for (let count = 0; count < resource.treasures.length; count++) { %>
-            <!--Treasures List-->
-            <div class="col-md-4">
-            <a href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>">
-                 <img class="img-rounded img-responsive" 
-                 src="<%= resource.treasures[count].imageUrl %>" 
-                 alt="<%= resource.treasures[count].title %>" 
-                 width=auto height="250">
-            </a>
-            <h4 class="treasureList-title"><%= resource.treasures[count].title %></h4>
-            <div class="treasureList-intro-hide">
-                <p><%= resource.treasures[count].optionalNote %></p>
-            </div>
-            <p>
-                <a class="btn btn-info" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-play-circle"></i> 点击浏览 »</a>
-                 <% if(displayName) { %>
-                <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
-                <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
-            <% } %>    
-            </p>
-            </div><!-- /.col-lg-4 -->
+            <% if( (count+1) % 4 == 1) { %>
+                <div class="row topGap">
             <% } %>
-        </div>
+            <!--Treasures List-->
+            <div class="col-md-3 topGap">
+                <a href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>">
+                    <img class="img-rounded img-responsive" 
+                    src="<%= resource.treasures[count].imageUrl %>" 
+                    alt="<%= resource.treasures[count].title %>" 
+                    width = auto height="250">
+                </a>
+                <h4 class="treasureList-title"><%= resource.treasures[count].title %></h4>
+                <div class="treasureList-intro-hide">
+                    <p><%= resource.treasures[count].optionalNote %></p>
+                </div>
+                <div>
+                    <a class="btn btn-info" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-play-circle"></i> 点击浏览 »</a>
+                    <% if(displayName) { %>
+                    <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
+                    <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
+                    <% } %>    
+                </div>
+            </div>
+            <% if( (count + 1) % 4 == 0) { %>
+                </div>
+            <% } %>
+            <% } %>
         </div>
         <!-- end project list container-->    
     

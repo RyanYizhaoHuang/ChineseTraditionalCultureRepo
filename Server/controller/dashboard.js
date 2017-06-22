@@ -1,4 +1,4 @@
-//create the bussinessContent object - represents a document in the bussinessContact collection
+//create the resource object - represents a document in the resources collection
 let resource = require('../Models/resources');
 
 //import mongoose
@@ -16,7 +16,7 @@ module.exports.DisplayDashboard = (req,res) =>
       {
         // console.log("Here is the resources: %j", resource );
         res.render('dashboard/index',{
-        title:'Add a new resource',
+        title:'Dashboard',
         resources: resource,
         displayName: req.user ? req.user.displayName : ''
          });
@@ -100,58 +100,44 @@ module.exports.DisplayEdit = (req,res) =>
     }   
 }
 
-//Save contact
+//Update Resource
 module.exports.UpdateResource = (req,res) =>
 {
     //get a reference to the id of the resource to edit
     let id = req.params.id;
 
-    // create a new resource object to hold the changes
-    let resources = new resource(
-        {
-            _id: id,         
-            topic: req.body.topic,
-            publisher:req.body.publisher,
-            publishDate: req.body.publishDate,
-            host:req.body.host,
-            categoryOne:req.body.categoryOne,
-            categoryTwo:req.body.categoryTwo,
-            language:req.body.language,
-            introduction:req.body.introduction,
-            imageUrl: req.body.imageUrl,
-            optionalUrl: req.body.optionalUrl,
-            promo: req.body.promo,
-            treasures: req.body.treasures,
-            keyword :  req.body.topic + ',' + req.body.publisher + ',' + req.body.host + ',' + req.body.language,             
-        }
-    );
-
-    // //save resource object
-    // resources.save((err) => {
-    //       if(err)
-    //         {
-    //             console.log(err);
-    //             res.end(err);
-    //         }
-    //         else
-    //         {
-    //             //refresh the resource list
-    //             res.redirect('/dashboard');
-    //         }
-    //     });
-    resource.update({_id:id},resources,(err)=>{
-
-            if(err)
-            {
-                console.log(err);
-                res.end(error);
-            }
-            else
-            {
-                //refresh the resource list
-                res.redirect('/dashboard');
-            }
-        });
+    resource.findByIdAndUpdate(id,
+                { $set: 
+                        {
+                          // don't add treasure or it will be changed
+                          // _id: id, not nessary to add id         
+                          topic: req.body.topic,
+                          publisher:req.body.publisher,
+                          publishDate: req.body.publishDate,
+                          host:req.body.host,
+                          categoryOne:req.body.categoryOne,
+                          categoryTwo:req.body.categoryTwo,
+                          language:req.body.language,
+                          introduction:req.body.introduction,
+                          imageUrl: req.body.imageUrl,
+                          optionalUrl: req.body.optionalUrl,
+                          promo: req.body.promo,
+                          keyword :  req.body.topic + ',' + req.body.publisher + ',' + req.body.host + ',' + req.body.language,             
+                        }
+                },
+                {new : true},
+                (err)=>{
+                    if(err)
+                    {
+                        console.log(err);
+                        res.end(error);
+                    }
+                    else
+                    {
+                        //refresh the resource list
+                        res.redirect('/dashboard');
+                    }
+          });
 }
 
 //Delete Resource
