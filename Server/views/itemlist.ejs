@@ -8,59 +8,125 @@
         <div class="col-md-12"><h2><%= title %></h2> </div>
     </div>
     <div class="row topGap">
-        <!--Left materials list-->
+     <!--Left materials list-->
      <div class="col-md-8">
-      <ul class="media-list">
+        <ul class="media-list">
         <% for (let count = 0; count < resources.length; count++) { %>
-
             <li class="media boxshadow">
-                <div class="
-                    media-left listImageLink">
+                <div class="media-left listImageLink">
                     <a href="/itemlist/<%= resources[count]._id %>">
-                        <img class="img-responsive img-rounded"  src="<%= resources[count].imageUrl%>" alt="<%= resources[count].topic%>">
+                        <img class="img-responsive img-rounded"  src="<%= resources[count].imageUrl%>" alt="<%= resources[count].topic%>" />
                     </a>
-                            </div>
-                            <div class="media-body">
-                            <h4 class="media-heading resource-topic"><%= resources[count].topic%></h4>
-                            <p class="resource-info">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading resource-topic"><%= resources[count].topic%></h4>
+                        <p class="resource-info">
                               <i class="fa fa-calendar" aria-hidden="true"></i> 发布时间:  <span><%= moment(resources[count].publishDate).format('YYYY/MM/DD') %> </span> 
                               <i class="fa fa-podcast" aria-hidden="true" style="margin-left:6px;"></i> 发布者： <span><%= resources[count].publisher %></span>
-                            </p>
-                            <p class="resource-info">
+                        </p>
+                        <p class="resource-info">
                             <i class="fa fa-user" aria-hidden="true"></i> 主讲人 <span><%= resources[count].host %></span>
-                            </p>                            
-                            <p class="resource-intro"><%= resources[count].introduction %></p>
-                            <p><a href="/itemlist/<%= resources[count]._id %>">查看详细</a> 
+                        </p>                            
+                        <p class="resource-intro"><%= resources[count].introduction %></p>
+                        <p><a href="/itemlist/<%= resources[count]._id %>">查看详细</a> 
                                 <% if(resources[count].optionalUrl) { %>
                                 <a href="<%= resources[count].optionalUrl %>">相关网站</a>
                                 <% } %>
-                            </p>
-                            <% if(displayName) { %>
-                            <p>
+                        </p>
+                        <% if(displayName) { %>
+                        <p>
                                 <a class="btn btn-primary" href="/dashboard/addTreasure/<%= resources[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 添加资料</a>
                                 <a class="btn btn-primary" href="/dashboard/edit/<%= resources[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 修改</a>
-                                <a class="btn btn-danger" href="/dashboard/delete/<%= resources[count]._id %>"><i class="fa fa-trash-o"></i> 删除</a></p>                                
-                            <% } %>
-                            </div>
-                        </li>
+                                <a class="btn btn-danger" href="/dashboard/delete/<%= resources[count]._id %>"><i class="fa fa-trash-o"></i> 删除</a>
+                        </p>                                
+                        <% } %>
+                </div>
+            </li>
         <% } %>
         </ul>
      </div>
-     <!--End Left materials list-->                     
+     <!--End Left materials list-->   
+                       
         <!--Right materials list-->           
         <div class="col-md-4">
-            <!--Thumbnail List-->
-            <div class="thumbnail boxshadow">
-                <!-- 16:9 aspect ratio -->
-                <div class="embed-responsive embed-responsive-16by9">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/UHgOUOxq3-Y?ecver=1" frameborder="0" allowfullscreen></iframe>
+            <!-- Treasure List item-->
+                <% for (let count = 0; count < promoVideo.length; count++) { %>
+                <% if(promoVideo[count].treasures.promo == true) { %>
+                <div class="row boxshadow bottomGap">
+                       <!-- Nav tabs -->
+                <ul class="nav nav-tabs treasure-item-right-tab treasureItemTabs" role="tablist">
+                    <% if(promoVideo[count].treasures.overSeaUrl) { %>                
+                    <li role="presentation" class="active"><a href="#overseaUrl<%= [count] %>" role="tab" data-toggle="tab">海外资源</a></li>
+                    <%  } %>
+                    <% if(promoVideo[count].treasures.chinaUrl) { %>                
+                    <li role="presentation"><a href="#chinaUrl<%= [count] %>"  role="tab" data-toggle="tab">中国大陆</a></li>
+                    <% } %>
+                    <% if(promoVideo[count].treasures.optionalUrl) { %>                
+                    <li role="presentation"><a href="#otherUrl<%= [count] %>"  role="tab" data-toggle="tab">其他</a></li>
+                    <% } %>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <% if(promoVideo[count].treasures.overSeaUrl) { %>                                
+                    <div role="tabpanel" class="tab-pane active" id="overseaUrl<%= [count] %>">
+                        <!-- 16:9 aspect ratio -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if (promoVideo[count].treasures.type == 'video') { %>
+                            <iframe class="embed-responsive-item" src="<%= promoVideo[count].treasures.overSeaUrl %>"  allowfullscreen></iframe>
+                            <% } else { %>
+                            <!--Mp4-->
+                            <video controls loop class="embed-responsive-item"  preload="none">
+                                <source src="<%= promoVideo[count].treasures.overSeaUrl %>">
+                            </video>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } %>                
+                    <% if(promoVideo[count].treasures.chinaUrl) { %>                
+                    <div role="tabpanel" class="tab-pane" id="chinaUrl<%= [count] %>">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if(promoVideo[count].treasures.type =='video') { %>
+                            <iframe class="embed-responsive-item" src="<%= promoVideo[count].treasures.chinaUrl %>"  allowfullscreen></iframe>
+                            <% } else {%>
+                            <!--Mp4-->
+                            <video controls loop class="embed-responsive-item"  preload="none">
+                                <source src="<%= promoVideo[count].treasures.chinaUrl %>">
+                            </video>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } %>
+                    <% if(promoVideo[count].treasures.optionalUrl) { %>                
+                    <div role="tabpanel" class="tab-pane" id="otherUrl<%= [count] %>">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <% if(promoVideo[count].treasures.type =='video') { %>
+                            <iframe class="embed-responsive-item" src="<%= promoVideo[count].treasures.optionalUrl %>"  allowfullscreen></iframe>
+                            <% } else {%>
+                            <!--Mp4-->
+                            <video controls loop class="embed-responsive-item"  preload="none">
+                                <source src="<%= promoVideo[count].treasures.optionalUrl %>">
+                            </video>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% } %>
                 </div>
-                <div class="caption">
-                <h3>Thumbnail caption</h3>
-                <p>...</p>
+                <!-- End Nav tabs-->
+                <div class="treasure-list-info-div">
+                    <%= promoVideo[count].treasures.title %>
                 </div>
-            </div>     
-            <!--End Thumbnail List-->
+                <% if(displayName) { %>
+                <p>
+                    <a class="btn btn-primary" href="/dashboard/treasure/<%= promoVideo[count]._id %>/<%= promoVideo[count].treasures._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
+                    <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= promoVideo[count]._id %>/<%= promoVideo[count].treasures._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
+                </p>
+                <% } %>    
+                </div>
+                <!-- End row -->
+                <% } /* End if(promo == true) */%>                
+                <% } /* End for loop */%>
+                <!-- End  Treasure List item -->
         </div>
         <!--End Right materials list-->           
     </div>

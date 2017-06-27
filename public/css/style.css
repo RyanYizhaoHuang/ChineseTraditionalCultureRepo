@@ -188,3 +188,7 @@ a {
   font-weight: lighter;
   overflow: hidden;
 }
+
+.bottomGap {
+  margin-bottom: 8px;
+}

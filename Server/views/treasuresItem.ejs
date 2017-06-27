@@ -99,48 +99,57 @@
                        <!-- Nav tabs -->
                 <ul class="nav nav-tabs treasure-item-right-tab" role="tablist">
                     <% if(resource.treasures[count].overSeaUrl) { %>                
-                    <li role="presentation" class="active"><a href="#overseaUrl" role="tab" data-toggle="tab">海外资源</a></li>
+                    <li role="presentation" class="active"><a href="#overseaUrl<%= [count] %>" role="tab" data-toggle="tab">海外资源</a></li>
                     <%  } %>
                     <% if(resource.treasures[count].chinaUrl) { %>                
-                    <li role="presentation"><a href="#chinaUrl"  role="tab" data-toggle="tab">中国大陆</a></li>
+                    <li role="presentation"><a href="#chinaUrl<%= [count] %>"  role="tab" data-toggle="tab">中国大陆</a></li>
                     <% } %>
                     <% if(resource.treasures[count].optionalUrl) { %>                
-                    <li role="presentation"><a href="#otherUrl"  role="tab" data-toggle="tab">其他</a></li>
+                    <li role="presentation"><a href="#otherUrl<%= [count] %>"  role="tab" data-toggle="tab">其他</a></li>
                     <% } %>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <% if(resource.treasures[count].overSeaUrl) { %>                                
-                    <div role="tabpanel" class="tab-pane active" id="overseaUrl">
+                    <div role="tabpanel" class="tab-pane active" id="overseaUrl<%= [count] %>">
                         <!-- 16:9 aspect ratio -->
                         <div class="embed-responsive embed-responsive-16by9">
                             <% if (resource.treasures[count].type == 'video') { %>
                             <iframe class="embed-responsive-item" src="<%= resource.treasures[count].overSeaUrl %>"  allowfullscreen></iframe>
                             <% } else { %>
-                            <div><%= resource.treasures[count].type %></div>
+                             <!--Mp4-->
+                            <video controls loop class="embed-responsive-item"  preload="none">
+                                <source src="<%= resource.treasures[count].overSeaUrl %>">
+                            </video>
                             <% } %>
                         </div>
                     </div>
                     <% } %>                
                     <% if(resource.treasures[count].chinaUrl) { %>                
-                    <div role="tabpanel" class="tab-pane" id="chinaUrl">
+                    <div role="tabpanel" class="tab-pane" id="chinaUrl<%= [count] %>">
                         <div class="embed-responsive embed-responsive-16by9">
                             <% if(resource.treasures[count].type =='video') { %>
                             <iframe class="embed-responsive-item" src="<%= resource.treasures[count].chinaUrl %>"  allowfullscreen></iframe>
                             <% } else {%>
-                            <div><%= resource.treasures[count].type %></div>
+                            <!--Mp4-->
+                            <video controls loop class="embed-responsive-item"  preload="none">
+                                <source src="<%= resource.treasures[count].chinaUrl %>">
+                            </video>
                             <% } %>
                         </div>
                     </div>
                     <% } %>
                     <% if(resource.treasures[count].optionalUrl) { %>                
-                    <div role="tabpanel" class="tab-pane" id="otherUrl">
+                    <div role="tabpanel" class="tab-pane" id="otherUrl<%= [count] %>">
                         <div class="embed-responsive embed-responsive-16by9">
                             <% if(resource.treasures[count].type =='video') { %>
                             <iframe class="embed-responsive-item" src="<%= resource.treasures[count].optionalUrl %>"  allowfullscreen></iframe>
                             <% } else {%>
-                            <div><%= resource.treasures[count].type %></div>
+                            <!--Mp4-->
+                            <video controls loop class="embed-responsive-item"  preload="none">
+                                <source src="<%= resource.treasures[count].optionalUrl %>">
+                            </video>
                             <% } %>
                         </div>
                     </div>

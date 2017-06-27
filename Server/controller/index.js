@@ -1,22 +1,67 @@
-/* Already import in the route page
-//modules required for routing
-//import express object
-let express = require('express');
-//create routing machanisim,create the router for my app 
-let router = express.Router();
 //import mongoose
 let mongoose = require('mongoose');
-let passport = require('passport');
-*/
+//create the resources object - represents a document in the resources collection
+let resources = require('../Models/resources');
+let moment = require('moment');
+let getPromoService = require('../services/getPromoService');
 
 //Display home page
 module.exports.DisplayHome = (req,res) => 
 {
-    res.render('index', { 
-    displayName: req.user ? req.user.displayName : '',
-    title: 'Chinese Traditional Culture Repository',
-    contacts :''
-  });
+    let promoTreasures;
+
+
+    try {
+
+    resources.aggregate([
+        { $match: {  'treasures.promo' : true }}, 
+        { $unwind : '$treasures' }           
+      ]
+    ).
+         exec( (err,resources) =>{
+
+        if(err)
+        {
+          console.error(err);
+          res.end(error);
+        }
+        else
+        {
+            promoTreasures = resources;
+            //console.log("Treasures Topic1:" + promoTreasures);                        
+        }
+      }
+    );
+
+      //find resources by promo
+      resources.find({promo : true }).
+      exec(
+          (err,resources) =>{
+
+            if(err)
+            {
+              console.error(err);
+              res.end(error);
+            }
+            else
+            {     
+            //console.log("Treasures Topic:" + promoTreasures.length);
+              
+                  res.render('index', { 
+                  displayName: req.user ? req.user.displayName : '',
+                  title: 'Chinese Traditional Culture Repository',
+                  promoVideo : promoTreasures,
+                  promoResources : resources,
+                  moment: moment
+                });
+            }
+      });
+
+
+  } catch (error) {
+      console.log(error);
+      res.redirect('/errors/404');
+    }   
 }
 
 //Display contact 

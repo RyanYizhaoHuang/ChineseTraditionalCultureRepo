@@ -7,6 +7,29 @@ let moment = require('moment');
 // Display "儒" list
 module.exports.DisplayResourcesRu = (req,res) =>{
     
+      //Get side promo treasures
+      let promoTreasures;
+
+      resources.aggregate([
+            { $match: {  'treasures.promo' : true , 'categoryOne' : 'ru' }}, 
+            { $unwind : '$treasures' }           
+          ]
+        ).
+            exec( (err,resources) =>{
+
+            if(err)
+            {
+              console.error(err);
+              res.end(error);
+            }
+            else
+            {
+                promoTreasures = resources;
+                //console.log("Treasures Topic1:" + promoTreasures);                        
+            }
+          }
+         );
+
     resources.find({'categoryOne':'ru'}, 
     null,
     // sort publishDate by desc 
@@ -22,6 +45,7 @@ module.exports.DisplayResourcesRu = (req,res) =>{
         res.render('itemlist',{
         title:'儒家学说',
         resources: resources,
+        promoVideo : promoTreasures,
         moment: moment,
         displayName: req.user ? req.user.displayName : ''
          });
@@ -150,7 +174,7 @@ module.exports.DisplayTreasuresList = (req,res) => {
       resources.findById(id,
       null,
        // sort sort number by desc 
-       { sort : {'treasures.1.sortNumber': -1 }},
+       { $sort : {'treasures.sortNumber': 1 }},
       (err,resource) =>{
 
         if(err)

@@ -22,16 +22,7 @@ $(function () {
         //         }
         // });
 
-        $('#treasureItemTabs li:eq(1) a').click(function (e) {
-                e.preventDefault()
-                $(this).tab('show')
-        });
-
-        $('#treasureItemTabs li:eq(0) a').click(function (e) {
-                e.preventDefault()
-                $(this).tab('show')
-        });
-        $('#treasureItemTabs li:eq(2) a').click(function (e) {
+        $('#treasureItemTabs li a').click(function (e) {
                 e.preventDefault()
                 $(this).tab('show')
         });
