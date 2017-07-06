@@ -8,10 +8,11 @@ let getPromoService = require('../services/getPromoService');
 //Display home page
 module.exports.DisplayHome = (req,res) => 
 {
-    let promoTreasures;
 
 
     try {
+
+    let promoTreasures;
 
     resources.aggregate([
         { $match: {  'treasures.promo' : true }}, 
