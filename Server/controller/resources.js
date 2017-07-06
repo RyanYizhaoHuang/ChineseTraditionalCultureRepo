@@ -24,7 +24,7 @@ module.exports.DisplayResourcesRu = (req,res) =>{
             }
             else
             {
-                promoTreasures = resources;
+                this.promoTreasures = resources;
                 //console.log("Treasures Topic1:" + promoTreasures);                        
             }
           }
@@ -45,7 +45,7 @@ module.exports.DisplayResourcesRu = (req,res) =>{
         res.render('itemlist',{
         title:'儒家学说',
         resources: resources,
-        promoVideo : promoTreasures,
+        promoVideo : this.promoTreasures,
         moment: moment,
         displayName: req.user ? req.user.displayName : ''
          });
@@ -56,6 +56,30 @@ module.exports.DisplayResourcesRu = (req,res) =>{
 
 // Display "释" list
 module.exports.DisplayResourcesShi = (req,res) =>{
+     
+        //Get side promo treasures
+      let promoTreasures;
+
+      resources.aggregate([
+            { $match: {  'treasures.promo' : true , 'categoryOne' : 'shi' }}, 
+            { $unwind : '$treasures' }           
+          ]
+        ).
+            exec( (err,resources) =>{
+
+            if(err)
+            {
+              console.error(err);
+              res.end(error);
+            }
+            else
+            {
+                this.promoTreasures = resources;
+            }
+          }
+         );
+     
+     
      resources.find({'categoryOne':'shi'},
      null,
     // sort publishDate by desc 
@@ -67,9 +91,9 @@ module.exports.DisplayResourcesShi = (req,res) =>{
       }
       else
       {
-        // console.log("Here is the resources: %j", resource );
         res.render('itemlist',{
         title:'释家佛法',
+        promoVideo : this.promoTreasures,        
         resources: resources,
         moment: moment,
         displayName: req.user ? req.user.displayName : ''
@@ -82,6 +106,29 @@ module.exports.DisplayResourcesShi = (req,res) =>{
 
 // Display "道" list
 module.exports.DisplayResourcesDao = (req,res) =>{
+ 
+      //Get side promo treasures
+      let promoTreasures;
+
+      resources.aggregate([
+            { $match: {  'treasures.promo' : true , 'categoryOne' : 'dao' }}, 
+            { $unwind : '$treasures' }           
+          ]
+        ).
+            exec( (err,resources) =>{
+
+            if(err)
+            {
+              console.error(err);
+              res.end(error);
+            }
+            else
+            {
+                this.promoTreasures = resources;
+            }
+          }
+         );
+ 
  resources.find({'categoryOne':'dao'},
     null,
     // sort publishDate by desc 
@@ -96,6 +143,7 @@ module.exports.DisplayResourcesDao = (req,res) =>{
         // console.log("Here is the resources: %j", resource );
         res.render('itemlist',{
         title:'道家思想',
+        promoVideo : this.promoTreasures,        
         resources: resources,
         moment: moment,
         displayName: req.user ? req.user.displayName : ''
@@ -106,6 +154,29 @@ module.exports.DisplayResourcesDao = (req,res) =>{
 
 // Display "净空法师" list
 module.exports.DisplayResourcesJingkong = (req,res) =>{
+ 
+      //Get side promo treasures
+      let promoTreasures;
+
+      resources.aggregate([
+            { $match: {  'treasures.promo' : true , 'categoryOne' : 'jingkong' }}, 
+            { $unwind : '$treasures' }           
+          ]
+        ).
+            exec( (err,resources) =>{
+
+            if(err)
+            {
+              console.error(err);
+              res.end(error);
+            }
+            else
+            {
+                this.promoTreasures = resources;
+            }
+          }
+         );
+ 
  resources.find({'categoryOne':'jingkong'},
     null,
     // sort publishDate by desc 
@@ -120,6 +191,7 @@ module.exports.DisplayResourcesJingkong = (req,res) =>{
         // console.log("Here is the resources: %j", resource );
         res.render('itemlist',{
         title:'净空法师经教',
+        promoVideo : this.promoTreasures,    
         resources: resources,
         moment: moment,
         displayName: req.user ? req.user.displayName : ''
@@ -130,6 +202,29 @@ module.exports.DisplayResourcesJingkong = (req,res) =>{
 
 // Display "南师" list
 module.exports.DisplayResourcesNan = (req,res) =>{
+ 
+      //Get side promo treasures
+      let promoTreasures;
+
+      resources.aggregate([
+            { $match: {  'treasures.promo' : true , 'categoryOne' : 'nan' }}, 
+            { $unwind : '$treasures' }           
+          ]
+        ).
+            exec( (err,resources) =>{
+
+            if(err)
+            {
+              console.error(err);
+              res.end(error);
+            }
+            else
+            {
+                this.promoTreasures = resources;
+            }
+          }
+         );
+ 
  resources.find({'categoryOne':'nan'},
       null,
     // sort publishDate by desc 
@@ -144,6 +239,7 @@ module.exports.DisplayResourcesNan = (req,res) =>{
         // console.log("Here is the resources: %j", resource );
         res.render('itemlist',{
         title:'南懷瑾法語',
+        promoVideo : this.promoTreasures,    
         resources: resources,
         moment: moment,
         displayName: req.user ? req.user.displayName : ''
