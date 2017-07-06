@@ -28,7 +28,7 @@ module.exports.DisplayHome = (req,res) =>
         }
         else
         {
-            promoTreasures = resources;
+            this.promoTreasures = resources;
             //console.log("Treasures Topic1:" + promoTreasures);                        
         }
       }
@@ -51,7 +51,7 @@ module.exports.DisplayHome = (req,res) =>
                   res.render('index', { 
                   displayName: req.user ? req.user.displayName : '',
                   title: 'Chinese Traditional Culture Repository',
-                  promoVideo : promoTreasures,
+                  promoVideo : this.promoTreasures,
                   promoResources : resources,
                   moment: moment
                 });
