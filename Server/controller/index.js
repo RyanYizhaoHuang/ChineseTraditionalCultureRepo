@@ -50,7 +50,7 @@ module.exports.DisplayHome = (req,res) =>
               
                   res.render('index', { 
                   displayName: req.user ? req.user.displayName : '',
-                  title: 'Chinese Traditional Culture Repository',
+                  title: '中华传统文化资料库 - Chinese Traditional Culture Repository',
                   promoVideo : this.promoTreasures,
                   promoResources : resources,
                   moment: moment

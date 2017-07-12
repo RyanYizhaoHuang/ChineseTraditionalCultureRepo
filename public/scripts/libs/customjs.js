@@ -27,6 +27,17 @@ $(function () {
                 $(this).tab('show')
         });
 
+         //caches a jQuery object containing the header element
+         var header = $("#fix-header");
+         $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll <= 160) {
+            header.removeClass('navbar-fixed-top');
+        } else {
+            header.addClass('navbar-fixed-top');
+        }
+    });
         
 
 });

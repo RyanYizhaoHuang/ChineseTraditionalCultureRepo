@@ -192,3 +192,13 @@ a {
 .bottomGap {
   margin-bottom: 8px;
 }
+
+.navbar-row {
+    display: block;
+    height:160px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    background-color: #0275d8;
+    clear: both;
+}

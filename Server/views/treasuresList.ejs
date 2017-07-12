@@ -29,9 +29,6 @@
                     width = auto height="250">
                 </a>
                 <h4 class="treasureList-title"><%= resource.treasures[count].title %></h4>
-                <div class="treasureList-intro-hide">
-                    <p><%= resource.treasures[count].optionalNote %></p>
-                </div>
                 <div>
                     <a class="btn btn-info" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-play-circle"></i> 点击浏览 »</a>
                     <% if(displayName) { %>
