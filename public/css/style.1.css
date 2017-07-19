@@ -68,15 +68,18 @@ a {
   margin-top: 36px;
   font-size: 14px;
   font-style: italic;
-  color: #FFEA7A;
+  color: #666666;
   width: 100%;
-  height: 20px;
-  line-height: 18px;
-  background-color: #272100;
+  line-height: 16px;
+  background-color: #F4EFCA;
+  padding:16px;
+  line-height: 16px;
+  display: block;
+  clear: both;
 }
 
 .footer a {
-  color: #FFEA7A;
+  color: #666666;
   
 }
 
