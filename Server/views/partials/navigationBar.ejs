@@ -22,34 +22,34 @@
       <ul class="nav navbar-nav">
       <li><a href="/">中华传统文化资料库</a></li>
       <% if (title == "儒家学说") { %>
-        <li class="active"><a href="/itemlist/ru"> 儒 </a></li>
+        <li class="actived"><a href="/itemlist/ru"> 儒 </a></li>
       <% } else { %>
         <li><a  href="/itemlist/ru"> 儒 </a></li>
       <% } %>
       <% if(title == "释家佛法") { %>
-        <li class="active"><a class="font-Droid" href="/itemlist/shi"> 释</a></li>
+        <li class="actived"><a class="font-Droid" href="/itemlist/shi"> 释</a></li>
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/shi"> 释</a></li>
       <% } %>
       <% if(title == "道家思想") { %>
-        <li class="active"><a class="font-Droid" href="/itemlist/dao"> 道</a></li>
+        <li class="actived"><a class="font-Droid" href="/itemlist/dao"> 道</a></li>
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/dao"> 道</a></li>
       <% } %>
       <% if(title == "净空法师经教") { %>
-        <li class="active"><a class="font-Droid" href="/itemlist/jingkong"> 净空法师</a></li>
+        <li class="actived"><a class="font-Droid" href="/itemlist/jingkong"> 净空法师</a></li>
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/jingkong"> 净空法师</a></li>
       <% } %>
             <% if(title == "南懷瑾法語") { %>
-        <li class="active"><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
+        <li class="actived"><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
       <% } %>
 
         <% if(typeof displayName == 'string' && displayName) { %>
         <% if(title == "Dashboard") { %>
-          <li  class="active"><a class="font-Droid" href="/dashboard"><i class="fa fa-address-book-o" aria-hidden="true"></i> DashBoard</a></li>
+          <li  class="actived"><a class="font-Droid" href="/dashboard"><i class="fa fa-address-book-o" aria-hidden="true"></i> DashBoard</a></li>
         <% } else { %>
           <li><a class="font-Droid" href="/dashboard"><i class="fa fa-address-book-o" aria-hidden="true"></i> DashBoard</a></li>
         <% } %>
@@ -72,5 +72,5 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="navBottomGapFixer"></div>
+<div id="fix-header-gap" style="clear:both"></div>
 <!-- end navigation bar container -->

@@ -30,7 +30,7 @@
                 </a>
                 <h4 class="treasureList-title"><%= resource.treasures[count].title %></h4>
                 <div>
-                    <a class="btn btn-info" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-play-circle"></i> 点击浏览 »</a>
+                    <a class="btn btn-playVideo" href="/itemlist/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-play-circle"></i> 点击浏览 »</a>
                     <% if(displayName) { %>
                     <a class="btn btn-primary" href="/dashboard/treasure/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-pencil-square-o"></i> 更新 »</a>
                     <a class="btn btn-danger" href="/dashboard/treasure/delete/<%= resource._id %>/<%= resource.treasures[count]._id %>" role="button"><i class="fa fa-trash-o"></i> 删除 »</a>                  
