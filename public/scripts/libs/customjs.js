@@ -44,7 +44,6 @@ $(function () {
             header.addClass('navbar-fixed-top');
         }
     });
-        
 
 });
 

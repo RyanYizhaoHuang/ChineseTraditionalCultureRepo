@@ -293,3 +293,11 @@ ul.nav li.actived a{
   background-color: #FFE140;
   color:#272100;
 }
+
+.logo-margin-left {
+  margin-left: 16px;
+}
+
+a.btn:link,a.btn:visited {
+  color: #FFF;
+}
