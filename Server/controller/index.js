@@ -19,7 +19,7 @@ module.exports.DisplayHome = (req,res) =>
         { $unwind : '$treasures' }           
       ]
     ).
-         exec( (err,resources) =>{
+         exec( (err,treasureVideo) =>{
 
         if(err)
         {
@@ -28,37 +28,34 @@ module.exports.DisplayHome = (req,res) =>
         }
         else
         {
-            this.promoTreasures = resources;
-            //console.log("Treasures Topic1:" + promoTreasures);                        
+            this.promoTreasures = treasureVideo;
+            //console.log("Treasures Topic1:" + promoTreasures); 
+            //find resources by promo
+            resources.find({promo : true }).
+            exec(
+                (err,resourcesTopic) =>{
+
+                  if(err)
+                  {
+                    console.error(err);
+                    res.end(error);
+                  }
+                  else
+                  {     
+                  //console.log("Treasures Topic:" + promoTreasures.length);
+                    
+                        res.render('index', { 
+                        displayName: req.user ? req.user.displayName : '',
+                        title: '中华传统文化资料库 - Chinese Traditional Culture Repository',
+                        promoVideo : this.promoTreasures,
+                        promoResources : resourcesTopic,
+                        moment: moment
+                      });
+                  }
+            });                       
         }
       }
     );
-
-      //find resources by promo
-      resources.find({promo : true }).
-      exec(
-          (err,resources) =>{
-
-            if(err)
-            {
-              console.error(err);
-              res.end(error);
-            }
-            else
-            {     
-            //console.log("Treasures Topic:" + promoTreasures.length);
-              
-                  res.render('index', { 
-                  displayName: req.user ? req.user.displayName : '',
-                  title: '中华传统文化资料库 - Chinese Traditional Culture Repository',
-                  promoVideo : this.promoTreasures,
-                  promoResources : resources,
-                  moment: moment
-                });
-            }
-      });
-
-
   } catch (error) {
       console.log(error);
       res.redirect('/errors/404');
@@ -82,37 +79,5 @@ module.exports.DisplayAbout = (req,res) =>
     title: 'About Us',
     displayName: req.user ? req.user.displayName : '',
     contacts :''
-  });
-}
-
-
-//Display project page
-module.exports.DisplayProject = (req,res) =>
-{
-    res.render('projects', { 
-    title: "Ryan's Project",
-    displayName: req.user ? req.user.displayName : '',
-    contacts :''
-  });
-}
-
-
-//Display services page
-module.exports.DisplayServices = (req,res) =>
-{
-    res.render('services', { 
-    title: "Ryan's Services",
-    displayName: req.user ? req.user.displayName : '',
-    contacts :''
-  });
-}
-
-
-//Display projects detail page
-module.exports.DisplayProjectDetail = (req,res) =>
-{
-  res.render('projects/detail',{
-    title: "Ryan's Project",
-    displayName: req.user ? req.user.displayName : ''
   });
 }

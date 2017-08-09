@@ -15,7 +15,7 @@ module.exports.DisplayResourcesRu = (req,res) =>{
             { $unwind : '$treasures' }           
           ]
         ).
-            exec( (err,resources) =>{
+            exec( (err,treasureVideo) =>{
 
             if(err)
             {
@@ -24,33 +24,32 @@ module.exports.DisplayResourcesRu = (req,res) =>{
             }
             else
             {
-                this.promoTreasures = resources;
-                //console.log("Treasures Topic1:" + promoTreasures);                        
+                this.promoTreasures = treasureVideo;
+                //render the ru index page
+                resources.find({'categoryOne':'ru'}, 
+                  null,
+                  // sort publishDate by desc 
+                  { sort : {'publishDate': -1 }},
+                  (err,resourcesTopic)=>{
+                    if(err)
+                    {
+                      return console.error(err);
+                    }
+                    else
+                    {
+                      // console.log("Here is the resources: %j", resource );
+                      res.render('itemlist',{
+                      title:'儒家学说',
+                      resources: resourcesTopic,
+                      promoVideo : this.promoTreasures,
+                      moment: moment,
+                      displayName: req.user ? req.user.displayName : ''
+                      });
+                    }
+                });//End render ru index page
             }
           }
-         );
-
-    resources.find({'categoryOne':'ru'}, 
-    null,
-    // sort publishDate by desc 
-    { sort : {'publishDate': -1 }},
-    (err,resources)=>{
-      if(err)
-      {
-        return console.error(err);
-      }
-      else
-      {
-        // console.log("Here is the resources: %j", resource );
-        res.render('itemlist',{
-        title:'儒家学说',
-        resources: resources,
-        promoVideo : this.promoTreasures,
-        moment: moment,
-        displayName: req.user ? req.user.displayName : ''
-         });
-      }
-    });
+         );   
 }
 
 
@@ -65,7 +64,7 @@ module.exports.DisplayResourcesShi = (req,res) =>{
             { $unwind : '$treasures' }           
           ]
         ).
-            exec( (err,resources) =>{
+            exec( (err,treasureVideo) =>{
 
             if(err)
             {
@@ -74,33 +73,33 @@ module.exports.DisplayResourcesShi = (req,res) =>{
             }
             else
             {
-                this.promoTreasures = resources;
+                this.promoTreasures = treasureVideo;
+                //render shi index pages
+                resources.find({'categoryOne':'shi'},
+                null,
+                // sort publishDate by desc 
+                { sort : {'publishDate': -1 }},
+                (err,resourcesTopic)=>{
+                    if(err)
+                    {
+                      return console.error(err);
+                    }
+                    else
+                    {
+                      res.render('itemlist',{
+                      title:'释家佛法',
+                      promoVideo : this.promoTreasures,        
+                      resources: resourcesTopic,
+                      moment: moment,
+                      displayName: req.user ? req.user.displayName : ''
+                      });
+                    }
+                  });
+                  //end render shi index pages
             }
           }
          );
-     
-     
-     resources.find({'categoryOne':'shi'},
-     null,
-    // sort publishDate by desc 
-    { sort : {'publishDate': -1 }},
-    (err,resources)=>{
-      if(err)
-      {
-        return console.error(err);
-      }
-      else
-      {
-        res.render('itemlist',{
-        title:'释家佛法',
-        promoVideo : this.promoTreasures,        
-        resources: resources,
-        moment: moment,
-        displayName: req.user ? req.user.displayName : ''
-         });
-      }
-    });
-}
+  }
 
 
 
@@ -115,7 +114,7 @@ module.exports.DisplayResourcesDao = (req,res) =>{
             { $unwind : '$treasures' }           
           ]
         ).
-            exec( (err,resources) =>{
+            exec( (err,treasureVideo) =>{
 
             if(err)
             {
@@ -124,32 +123,33 @@ module.exports.DisplayResourcesDao = (req,res) =>{
             }
             else
             {
-                this.promoTreasures = resources;
+                this.promoTreasures = treasureVideo;
+                 //render dao index page
+                resources.find({'categoryOne':'dao'},
+                    null,
+                    // sort publishDate by desc 
+                    { sort : {'publishDate': -1 }},
+                    (err,resourcesTopic)=>{
+                      if(err)
+                      {
+                        return console.error(err);
+                      }
+                      else
+                      {
+                        // console.log("Here is the resources: %j", resource );
+                        res.render('itemlist',{
+                        title:'道家思想',
+                        promoVideo : this.promoTreasures,        
+                        resources: resourcesTopic,
+                        moment: moment,
+                        displayName: req.user ? req.user.displayName : ''
+                        });
+                      }
+                    });
+                    //end render dao index page
             }
           }
          );
- 
- resources.find({'categoryOne':'dao'},
-    null,
-    // sort publishDate by desc 
-    { sort : {'publishDate': -1 }},
-    (err,resources)=>{
-      if(err)
-      {
-        return console.error(err);
-      }
-      else
-      {
-        // console.log("Here is the resources: %j", resource );
-        res.render('itemlist',{
-        title:'道家思想',
-        promoVideo : this.promoTreasures,        
-        resources: resources,
-        moment: moment,
-        displayName: req.user ? req.user.displayName : ''
-         });
-      }
-    });
 }
 
 // Display "净空法师" list
@@ -163,7 +163,7 @@ module.exports.DisplayResourcesJingkong = (req,res) =>{
             { $unwind : '$treasures' }           
           ]
         ).
-            exec( (err,resources) =>{
+            exec( (err,treasureVideo) =>{
 
             if(err)
             {
@@ -172,32 +172,33 @@ module.exports.DisplayResourcesJingkong = (req,res) =>{
             }
             else
             {
-                this.promoTreasures = resources;
+                this.promoTreasures = treasureVideo;
+                 //render jinkong index page
+                resources.find({'categoryOne':'jingkong'},
+                    null,
+                    // sort publishDate by desc 
+                    { sort : {'publishDate': -1 }},
+                    (err,resourcesTopic)=>{
+                      if(err)
+                      {
+                        return console.error(err);
+                      }
+                      else
+                      {
+                        // console.log("Here is the resources: %j", resource );
+                        res.render('itemlist',{
+                        title:'净空法师经教',
+                        promoVideo : this.promoTreasures,    
+                        resources: resourcesTopic,
+                        moment: moment,
+                        displayName: req.user ? req.user.displayName : ''
+                        });
+                      }
+                    });
+                  //end render jinkong index page
             }
           }
          );
- 
- resources.find({'categoryOne':'jingkong'},
-    null,
-    // sort publishDate by desc 
-    { sort : {'publishDate': -1 }},
-    (err,resources)=>{
-      if(err)
-      {
-        return console.error(err);
-      }
-      else
-      {
-        // console.log("Here is the resources: %j", resource );
-        res.render('itemlist',{
-        title:'净空法师经教',
-        promoVideo : this.promoTreasures,    
-        resources: resources,
-        moment: moment,
-        displayName: req.user ? req.user.displayName : ''
-         });
-      }
-    });
 }
 
 // Display "南师" list
@@ -211,7 +212,7 @@ module.exports.DisplayResourcesNan = (req,res) =>{
             { $unwind : '$treasures' }           
           ]
         ).
-            exec( (err,resources) =>{
+            exec( (err,treasureVideo) =>{
 
             if(err)
             {
@@ -220,32 +221,33 @@ module.exports.DisplayResourcesNan = (req,res) =>{
             }
             else
             {
-                this.promoTreasures = resources;
+                this.promoTreasures = treasureVideo;
+                //render nan index page
+                 resources.find({'categoryOne':'nan'},
+                  null,
+                // sort publishDate by desc 
+                { sort : {'publishDate': -1 }},
+                (err,resourcesTopic)=>{
+                    if(err)
+                    {
+                      return console.error(err);
+                    }
+                    else
+                    {
+                      // console.log("Here is the resources: %j", resource );
+                      res.render('itemlist',{
+                      title:'南懷瑾法語',
+                      promoVideo : this.promoTreasures,    
+                      resources: resourcesTopic,
+                      moment: moment,
+                      displayName: req.user ? req.user.displayName : ''
+                      });
+                    }
+                });
+                //end render nan index page
             }
           }
          );
- 
- resources.find({'categoryOne':'nan'},
-      null,
-    // sort publishDate by desc 
-    { sort : {'publishDate': -1 }},
-    (err,resources)=>{
-      if(err)
-      {
-        return console.error(err);
-      }
-      else
-      {
-        // console.log("Here is the resources: %j", resource );
-        res.render('itemlist',{
-        title:'南懷瑾法語',
-        promoVideo : this.promoTreasures,    
-        resources: resources,
-        moment: moment,
-        displayName: req.user ? req.user.displayName : ''
-         });
-      }
-    });
 }
 
 
