@@ -18,7 +18,7 @@
         <div class="container topGap">
             <% for (let count = 0; count < resource.treasures.length; count++) { %>
             <% if( (count+1) % 4 == 1) { %>
-                <div class="row topGap">
+                <div class="row topGap"></div>
             <% } %>
             <!--Treasures List-->
             <div class="col-md-3 topGap">
@@ -37,9 +37,6 @@
                     <% } %>    
                 </div>
             </div>
-            <% if( (count + 1) % 4 == 0) { %>
-                </div>
-            <% } %>
             <% } %>
         </div>
         <!-- end project list container-->    

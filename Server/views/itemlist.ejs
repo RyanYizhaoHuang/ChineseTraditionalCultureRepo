@@ -53,7 +53,6 @@
                 <% for (let count = 0; count < promoVideo.length; count++) { %>
                 <% if(promoVideo[count].treasures.promo == true) { %>
                 <div class="row boxshadow bottomGap">
-                       <!-- Nav tabs -->
                 <ul class="nav nav-tabs treasure-item-right-tab treasureItemTabs" role="tablist">
                     <% if(promoVideo[count].treasures.overSeaUrl) { %>                
                     <li role="presentation" class="active"><a href="#overseaUrl<%= [count] %>" role="tab" data-toggle="tab">海外资源</a></li>
@@ -123,7 +122,6 @@
                 </p>
                 <% } %>    
                 </div>
-                <!-- End row -->
                 <% } /* End if(promo == true) */%>                
                 <% } /* End for loop */%>
                 <!-- End  Treasure List item -->
