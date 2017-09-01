@@ -67,6 +67,7 @@ a {
   font-family: Helvetica, 微软雅黑,'Roboto', sans-serif;
   font-size: 14px;
   font-style: italic;
+  text-align: center;
   color: #666666;
   width: 100%;
   line-height: 28px;
@@ -78,7 +79,7 @@ a {
 
 .footer a {
   color: #666666;
-  
+  font-size: 14px;
 }
 
 

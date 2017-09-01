@@ -76,7 +76,7 @@ module.exports.DisplayContact = (req,res) =>
 module.exports.DisplayAbout = (req,res) => 
 {
     res.render('about', { 
-    title: 'About Us',
+    title: '关于我们 About Us',
     displayName: req.user ? req.user.displayName : '',
     contacts :''
   });
