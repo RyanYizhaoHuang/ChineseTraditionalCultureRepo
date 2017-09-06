@@ -39,7 +39,6 @@ db.once('open',()=>{
 });
 
 let index = require('./routes/index');  //wildcard route
-let bussinesscontact = require('./routes/contact.js'); //busniess contact route
 let resources = require('./routes/resources.js'); //resources route
 let dashboard = require('./routes/dashboard.js'); //dashboard route
 let users = require('./routes/users'); //routes for users and auth
