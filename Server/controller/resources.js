@@ -250,6 +250,54 @@ module.exports.DisplayResourcesNan = (req,res) =>{
          );
 }
 
+//Display Cantonese resources
+module.exports.DisplayResourcesCantonese = (req,res) =>{
+  
+       //Get side promo treasures
+       let promoTreasures;
+ 
+       resources.aggregate([
+             { $match: {  'treasures.promo' : true , 'language' : 'can' }}, 
+             { $unwind : '$treasures' }           
+           ]
+         ).
+             exec( (err,treasureVideo) =>{
+ 
+             if(err)
+             {
+               console.error(err);
+               res.end(error);
+             }
+             else
+             {
+                 this.promoTreasures = treasureVideo;
+                 //render cantonese index page
+                  resources.find({'language':'can'},
+                   null,
+                 // sort publishDate by desc 
+                 { sort : {'publishDate': -1 }},
+                 (err,resourcesTopic)=>{
+                     if(err)
+                     {
+                       return console.error(err);
+                     }
+                     else
+                     {
+                       // console.log("Here is the resources: %j", resource );
+                       res.render('itemlist',{
+                       title:'粤语专区',
+                       promoVideo : this.promoTreasures,    
+                       resources: resourcesTopic,
+                       moment: moment,
+                       displayName: req.user ? req.user.displayName : ''
+                       });
+                     }
+                 });
+                 //end render nan index page
+             }
+           }
+          );
+ }
 
 // Display add resource page
 module.exports.DisplayAddResources = (req, res) => 

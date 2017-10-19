@@ -40,10 +40,15 @@
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/jingkong"> 净空法师</a></li>
       <% } %>
-            <% if(title == "南懷瑾法語") { %>
-        <li class="actived"><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
+      <% if(title == "南懷瑾法語") { %>
+        <li class="actived"><a class="font-Droid" href="/itemlist/cantonese"> 南怀瑾</a></li>
       <% } else { %>
         <li><a class="font-Droid" href="/itemlist/nan"> 南怀瑾</a></li>
+      <% } %>
+      <% if(title == "粤语专区") { %>
+        <li class="actived"><a class="font-Droid" href="/itemlist/cantonese"> 粤语专区</a></li>
+      <% } else { %>
+        <li><a class="font-Droid" href="/itemlist/cantonese"> 粤语专区</a></li>
       <% } %>
 
         <% if(typeof displayName == 'string' && displayName) { %>

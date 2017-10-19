@@ -36,6 +36,13 @@ router.get('/nan',(req,res, next)=>{
     resourcesController.DisplayResourcesNan(req,res);
 });
 
+
+//display "Nanshi" resource
+router.get('/cantonese',(req,res, next)=>{
+    resourcesController.DisplayResourcesCantonese(req,res);
+});
+
+
 // display trasures list
 router.get('/:id',(req,res,next)=>{
     resourcesController.DisplayTreasuresList(req,res);
